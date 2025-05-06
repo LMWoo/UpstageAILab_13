@@ -12,3 +12,17 @@ Advanced ML 강의 수강 후 실습 진행
 주요 Feature로 시군구를 선정하여 EDA 및 Feature Engineering 수행
 
 모델 학습은 LightGBM과 K-Fold 교차검증 방식을 통해 진행
+
+### 3. EDA
+
+### 4. Feature Selection
+
+### 5. Feature Engineering
+
+### 6. Model Selection
+
+### 7. Model Training & Validation
+
+### 8. Model Test
+
+### 9. Experiment Notes
