@@ -26,36 +26,3 @@ Advanced ML 강의 수강 후 실습 진행
 ### 8. Model Test
 
 ### 9. Experiment Notes
-
-<details>
-<summary> LightGBM 실험</summary>
-
-### 실험 내용
-
-- max_depth 튜닝
-- learning_rate 조정
-- k-Fold 5개로 검증
-
-</details>
-
-<details>
-<summary> XGBoost 실험</summary>
-
-### 실험 내용
-
-- early_stopping 사용
-- categorical feature 처리
-- Test set 결과 비교
-
-</details>
-
-<details>
-<summary> 모델 앙상블 실험</summary>
-
-### 실험 내용
-
-- Voting
-- Stacking
-- 최종 성능 비교
-
-</details>
