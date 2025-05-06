@@ -27,10 +27,8 @@ Advanced ML 강의 수강 후 실습 진행
 
 ### 9. Experiment Notes
 
-# 📚 실험 기록
-
 <details>
-<summary>🚀 LightGBM 실험</summary>
+<summary> LightGBM 실험</summary>
 
 ### 실험 내용
 
@@ -41,7 +39,7 @@ Advanced ML 강의 수강 후 실습 진행
 </details>
 
 <details>
-<summary>🔧 XGBoost 실험</summary>
+<summary> XGBoost 실험</summary>
 
 ### 실험 내용
 
@@ -52,7 +50,7 @@ Advanced ML 강의 수강 후 실습 진행
 </details>
 
 <details>
-<summary>📈 모델 앙상블 실험</summary>
+<summary> 모델 앙상블 실험</summary>
 
 ### 실험 내용
 
