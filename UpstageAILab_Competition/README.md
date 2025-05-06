@@ -4,14 +4,31 @@
 ### 1. Baseline Code
 기본적인 데이터 전처리 및 학습 파이프라인 구축
 
-모델: RandomForest 사용
 
-### 2. Baseline Study
-Advanced ML 강의 수강 후 실습 진행
+#### EDA (Exploratory Data Analysis)
+ - 데이터 형식 : csv형태 정형 데이터 
+ - 결측치 확인 (df.info(), df.describe(), df.isnull().sum())
+ - 범주형, 숫자형 분리 
 
-주요 Feature로 시군구를 선정하여 EDA 및 Feature Engineering 수행
+#### Feature Selection
+ - 결측치 90% 이상인 특징 제거
 
-모델 학습은 LightGBM과 K-Fold 교차검증 방식을 통해 진행
+#### Feature Engineering
+ - 숫자형 결측치 선형 보간, 범주형 결측치 Label encoding 적용
+ - 계약년월 → 계약년, 계약월로 파생
+
+#### Model Selection
+트리 기반 모델 : RandomForest 사용, Overfitting 가능성 낮음
+
+#### Model Train & Validation
+ - sklearn의 RandomForestRegressor사용 하여 학습
+   - 학습 파라미터 : n_estimators=100, criterion='squared_error'
+   - data : 8:2로 train, valiation data random split 
+
+#### Feature Importance
+
+#### Test
+ - 학습된 모델로 예측 수행
 
 ### 3. EDA
 
