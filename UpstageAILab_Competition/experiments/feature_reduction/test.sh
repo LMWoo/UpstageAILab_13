@@ -1,0 +1,1 @@
+python test.py --feature_reduction=True --model_name=feature_reduction_model --save_file=feature_reduction

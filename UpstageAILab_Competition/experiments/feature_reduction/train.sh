@@ -1,0 +1,1 @@
+python train.py --feature_reduction=True --model_name=feature_reduction_model
