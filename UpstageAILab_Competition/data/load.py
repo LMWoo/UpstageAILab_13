@@ -83,12 +83,12 @@ def feature_selection(dt, dt_test, is_feature_reduction=False):
 
     if is_feature_reduction == True:
         selected = list(concat.columns[concat.isnull().sum() <= 1000000])
-        save_columns = [
-            "계약년월", "전용면적", "시군구",
-            "건축년도", "강남여부", "좌표X", "좌표Y",
-            'target', 'is_test', "도로명", "부번"]
+        save_columns = [ "건축년도", "계약년월", "전용면적", "시군구", "부번", "신축여부", "강남여부", 'target', 'is_test']
+            # "건축년도", 
+            # "좌표X", "좌표Y",
+            # "도로명",
             # '전용면적','계약년월','건축년도',
-                        #  '강남여부', '신축여부','시군구',
+                        #  '강남여부', ,'시군구',
                         #  '좌표X', '좌표Y',
                         #  'k-건설사(시공사)', 'k-시행사',
                         #  'k-주거전용면적','k-전체동수', 
@@ -96,21 +96,21 @@ def feature_selection(dt, dt_test, is_feature_reduction=False):
                         #  '본번', '부번', '아파트명', '도로명','번지', 'target', 'is_test']
         selected = [x for x in selected if x in save_columns]
         concat_select = concat[selected]
+
+        concat_select['부번'] = concat_select['부번'].astype('str')
     else:
         selected = list(concat.columns[concat.isnull().sum() <= 1000000])
         concat_select = concat[selected]
+ 
+        # 본번, 부번의 경우 float로 되어있지만 범주형 변수의 의미를 가지므로 object(string) 형태로 바꾸어주고 아래 작업을 진행하겠습니다.
+        concat_select['본번'] = concat_select['본번'].astype('str')
+        concat_select['부번'] = concat_select['부번'].astype('str')
 
 
 
     print(concat_select.isnull().sum())     # 결측치가 100만개 초과인 칼럼이 제거된 모습은 아래와 같습니다.
 
     print(concat_select.info())
-
-    # 본번, 부번의 경우 float로 되어있지만 범주형 변수의 의미를 가지므로 object(string) 형태로 바꾸어주고 아래 작업을 진행하겠습니다.
-    if is_feature_reduction == False:
-        concat_select['본번'] = concat_select['본번'].astype('str')
-    
-    concat_select['부번'] = concat_select['부번'].astype('str')
 
     # 먼저, 연속형 변수와 범주형 변수를 위 info에 따라 분리해주겠습니다.
     continuous_columns = []
@@ -131,9 +131,6 @@ def feature_selection(dt, dt_test, is_feature_reduction=False):
     # 연속형 변수에 대한 보간 (선형 보간)
     concat_select[continuous_columns] = concat_select[continuous_columns].interpolate(method='linear', axis=0)
 
-    print(concat_select.isnull().sum())         # 결측치가 보간된 모습을 확인해봅니다.)
-
-    print(concat_select.shape)
 
     '''
     # 대표적인 연속형 변수인 “전용 면적” 변수 관련한 분포를 먼저 살펴보도록 하겠습니다.

@@ -14,8 +14,9 @@ from sklearn import metrics
 import eli5
 from eli5.sklearn import PermutationImportance
 
-from data.load import load_data
+import joblib
 
+from data.load import load_data
 
 import argparse
 
@@ -24,6 +25,7 @@ parser = argparse.ArgumentParser(description="Train parser")
 parser.add_argument("--is_feature_reduction", type=bool, default=False, help='50 features -> top 8 features')
 parser.add_argument("--is_feature_engineering", type=bool, default=False, help='gu -> High, Mid, Low')
 parser.add_argument("--is_logScale", type=bool, default=False, help='target -> logScale')
+parser.add_argument("--is_lightGBM", type=bool, default=False, help='model train LightGBM')
 parser.add_argument("--train_data_path", type=str, default="../../data/train.csv", help="train data path") 
 parser.add_argument("--test_data_path", type=str, default="../../data/test.csv", help="test data path") 
 parser.add_argument("--model_name", type=str, default="save_model")
@@ -38,20 +40,30 @@ if __name__ == "__main__":
 
     dt_test.head(2)      # test dataset에 대한 inference를 진행해보겠습니다.
 
-    # 저장된 모델을 불러옵니다.
-    with open('./weights/'+ args.model_name + '.pkl', 'rb') as f:
-        print('./weights/'+ args.model_name + '.pkl')
-        model = pickle.load(f)
+    if args.is_lightGBM == True:
+        model = joblib.load('./weights/'+ args.model_name + '.pkl')
 
-    # %%time
-    X_test = dt_test.drop(['target'], axis=1)
+        X_test = dt_test.drop(['target'], axis=1)
 
-    # Test dataset에 대한 inference를 진행합니다.
-    real_test_pred = model.predict(X_test)
-    if args.is_logScale == True:
-        real_test_pred = np.expm1(real_test_pred)
-    # 앞서 예측한 예측값들을 저장합니다.
-    preds_df = pd.DataFrame(real_test_pred.astype(int), columns=["target"])
-    preds_df.to_csv('./results/' + args.save_file + '.csv', index=False)
+        real_test_pred = model.predict(X_test)
+
+        preds_df = pd.DataFrame(real_test_pred.astype(int), columns=["target"])
+        preds_df.to_csv('./results/' + args.save_file + '.csv', index=False)
+    else:
+        # 저장된 모델을 불러옵니다.
+        with open('./weights/'+ args.model_name + '.pkl', 'rb') as f:
+            print('./weights/'+ args.model_name + '.pkl')
+            model = pickle.load(f)
+
+        # %%time
+        X_test = dt_test.drop(['target'], axis=1)
+
+        # Test dataset에 대한 inference를 진행합니다.
+        real_test_pred = model.predict(X_test)
+        if args.is_logScale == True:
+            real_test_pred = np.expm1(real_test_pred)
+        # 앞서 예측한 예측값들을 저장합니다.
+        preds_df = pd.DataFrame(real_test_pred.astype(int), columns=["target"])
+        preds_df.to_csv('./results/' + args.save_file + '.csv', index=False)
         
     print('finish test')
