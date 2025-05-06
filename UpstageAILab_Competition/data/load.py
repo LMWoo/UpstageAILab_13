@@ -27,12 +27,9 @@ from sklearn import metrics
 import eli5
 from eli5.sklearn import PermutationImportance
 
-def load_data(feature_reduction=False): 
-   # 필요한 데이터를 load 하겠습니다. 경로는 환경에 맞게 지정해주면 됩니다.
-    train_path = '../../data/train.csv'
-    test_path  = '../../data/test.csv'
-    dt = pd.read_csv(train_path)
-    dt_test = pd.read_csv(test_path)
+from utils.encoding import targetEncoding
+
+def feature_selection(dt, dt_test, is_feature_reduction=False):
 
     # Train data와 Test data shape은 아래와 같습니다.
     print('Train data shape : ', dt.shape, 'Test data shape : ', dt_test.shape)
@@ -84,7 +81,7 @@ def load_data(feature_reduction=False):
 
     # 위에서 결측치가 100만개 이하인 변수들만 골라 새로운 concat_select 객체로 저장해줍니다.
 
-    if feature_reduction == True:
+    if is_feature_reduction == True:
         selected = list(concat.columns[concat.isnull().sum() <= 1000000])
         save_columns = [
             "계약년월", "전용면적", "시군구",
@@ -182,24 +179,38 @@ def load_data(feature_reduction=False):
 
     print(concat_select.columns)
 
+    return concat_select
+
+def feature_engineering(concat_select, is_feature_engineering=False):
     all = list(concat_select['구'].unique())
     gangnam = ['강서구', '영등포구', '동작구', '서초구', '강남구', '송파구', '강동구']
     gangbuk = [x for x in all if x not in gangnam]
 
     assert len(all) == len(gangnam) + len(gangbuk)       # 알맞게 분리되었는지 체크합니다.
 
-    # 강남의 여부를 체크합니다.
-    is_gangnam = []
-    for x in concat_select['구'].tolist() :
-        if x in gangnam :
-            is_gangnam.append(1)
-        else :
-            is_gangnam.append(0)
+    if is_feature_engineering == False:
+        # 강남의 여부를 체크합니다.
+        is_gangnam = []
+        for x in concat_select['구'].tolist() :
+            if x in gangnam :
+                is_gangnam.append(1)
+            else :
+                is_gangnam.append(0)
 
-    # 파생변수를 하나 만릅니다.
-    concat_select['강남여부'] = is_gangnam
+        # 파생변수를 하나 만릅니다.
+        concat_select['강남여부'] = is_gangnam
+    else:
+        gu_mean_price=concat_select.groupby("구")['target'].mean().sort_values()
 
-    print(concat_select.columns)
+        gu_grade = pd.qcut(gu_mean_price,q=3, labels=['Low', 'Mid', 'High'])
+
+        gu_grade_map = dict(zip(gu_mean_price.index, gu_grade))
+
+        concat_select["price_grade"] = concat_select["구"].map(gu_grade_map)
+
+        gu_encoding_map = targetEncoding(concat_select, '구')
+
+    # targetEncoding(concat_select, '구')
 
     # 건축년도 분포는 아래와 같습니다. 특히 2005년이 Q3에 해당합니다.
     # 2009년 이후에 지어진 건물은 10%정도 되는 것을 확인할 수 있습니다.
@@ -208,23 +219,11 @@ def load_data(feature_reduction=False):
     # 따라서 2009년 이후에 지어졌으면 비교적 신축이라고 판단하고, 신축 여부 변수를 제작해보도록 하겠습니다.
     concat_select['신축여부'] = concat_select['건축년도'].apply(lambda x: 1 if x >= 2009 else 0)
 
-    print(concat_select.head(1))      # 최종 데이터셋은 아래와 같습니다.)
+    print(concat_select.columns)
 
-    print(concat_select.shape)
+    return concat_select
 
-    # 이제 다시 train과 test dataset을 분할해줍니다. 위에서 제작해 놓았던 is_test 칼럼을 이용합니다.
-    dt_train = concat_select.query('is_test==0')
-    dt_test = concat_select.query('is_test==1')
-
-    # 이제 is_test 칼럼은 drop해줍니다.
-    dt_train.drop(['is_test'], axis = 1, inplace=True)
-    dt_test.drop(['is_test'], axis = 1, inplace=True)
-    print(dt_train.shape, dt_test.shape)
-
-    print(dt_test.head(1))
-
-    dt_test['target'] = 0
-
+def feature_encoding(dt_train, dt_test):
     # 파생변수 제작으로 추가된 변수들이 존재하기에, 다시한번 연속형과 범주형 칼럼을 분리해주겠습니다.
     continuous_columns_v2 = []
     categorical_columns_v2 = []
@@ -263,6 +262,35 @@ def load_data(feature_reduction=False):
 
     assert dt_train.shape[1] == dt_test.shape[1]          # train/test dataset의 shape이 같은지 확인해주겠습니다.
 
+    return dt_train, dt_test, categorical_columns_v2, label_encoders
+
+def load_data(is_feature_reduction=False, is_feature_engineering=False): 
+   # 필요한 데이터를 load 하겠습니다. 경로는 환경에 맞게 지정해주면 됩니다.
+    train_path = '../../data/train.csv'
+    test_path  = '../../data/test.csv'
+    dt = pd.read_csv(train_path)
+    dt_test = pd.read_csv(test_path)
+
+    concat_select = feature_selection(dt, dt_test, is_feature_reduction)
+    concat_select = feature_engineering(concat_select, is_feature_engineering)
+    
+    print(concat_select.head(1))      # 최종 데이터셋은 아래와 같습니다.)
+
+    # 이제 다시 train과 test dataset을 분할해줍니다. 위에서 제작해 놓았던 is_test 칼럼을 이용합니다.
+    dt_train = concat_select.query('is_test==0')
+    dt_test = concat_select.query('is_test==1')
+
+    # 이제 is_test 칼럼은 drop해줍니다.
+    dt_train.drop(['is_test'], axis = 1, inplace=True)
+    dt_test.drop(['is_test'], axis = 1, inplace=True)
+    print(dt_train.shape, dt_test.shape)
+
+    print(dt_test.head(1))
+
+    dt_test['target'] = 0
+    
+    dt_train, dt_test, categorical_columns_v2, label_encoders = feature_encoding(dt_train, dt_test)
+    
 
     # Target과 독립변수들을 분리해줍니다.
     y_train = dt_train['target']

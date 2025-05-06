@@ -21,7 +21,8 @@ import argparse
 
 parser = argparse.ArgumentParser(description="Train parser")
 
-parser.add_argument("--feature_reduction", type=bool, default=False)
+parser.add_argument("--is_feature_reduction", type=bool, default=False, description='50 features -> top 8 features')
+parser.add_argument("--is_feature_engineering", type=bool, default=False, description='gu -> High, Mid, Low')
 parser.add_argument("--model_name", type=str, default="save_model")
 parser.add_argument("--save_file", type=str, default="output")
 
@@ -29,7 +30,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    X_train, y_train, X_val, y_val, categorical_columns_v2, label_encoders, dt_test = load_data(args.feature_reduction)
+    X_train, y_train, X_val, y_val, categorical_columns_v2, label_encoders, dt_test = load_data(args.is_feature_reduction, args.is_feature_engineering)
 
 
     dt_test.head(2)      # test dataset에 대한 inference를 진행해보겠습니다.
