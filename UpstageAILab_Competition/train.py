@@ -21,6 +21,7 @@ import argparse
 parser = argparse.ArgumentParser(description="Train parser")
 
 parser.add_argument("--feature_reduction", type=bool, default=False)
+parser.add_argument("--model_name", type=str, default="save_model")
 
 if __name__ == "__main__":
 
@@ -44,7 +45,7 @@ if __name__ == "__main__":
     # sns.barplot(x=importances, y=importances.index)
     # plt.show()
     # 학습된 모델을 저장합니다. Pickle 라이브러리를 이용하겠습니다.
-    with open('./weights/saved_model.pkl', 'wb') as f:
+    with open('./weights/'+ args.model_name + '.pkl', 'wb') as f:
         pickle.dump(model, f)
 
     # # Permutation importance 방법을 변수 선택에 이용해보겠습니다.

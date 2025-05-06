@@ -110,7 +110,9 @@ def load_data(feature_reduction=False):
     print(concat_select.info())
 
     # 본번, 부번의 경우 float로 되어있지만 범주형 변수의 의미를 가지므로 object(string) 형태로 바꾸어주고 아래 작업을 진행하겠습니다.
-    concat_select['본번'] = concat_select['본번'].astype('str')
+    if feature_reduction == False:
+        concat_select['본번'] = concat_select['본번'].astype('str')
+    
     concat_select['부번'] = concat_select['부번'].astype('str')
 
     # 먼저, 연속형 변수와 범주형 변수를 위 info에 따라 분리해주겠습니다.
