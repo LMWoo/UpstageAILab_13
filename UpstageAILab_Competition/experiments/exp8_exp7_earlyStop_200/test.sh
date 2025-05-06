@@ -1,0 +1,8 @@
+python test.py \
+    --train_data_path=../../data/train_subway.csv \
+    --test_data_path=../../data/test_subway.csv \
+    --is_subway=True \
+    --is_feature_reduction=True \
+    --is_lightGBM=True \
+    --model_name=exp8_exp7_earlyStop_200 \
+    --save_file=exp8_exp7_earlyStop_200

@@ -30,6 +30,7 @@ parser.add_argument("--is_feature_engineering", type=bool, default=False, help='
 parser.add_argument("--is_logScale", type=bool, default=False, help='target -> logScale')
 parser.add_argument("--is_lightGBM", type=bool, default=False, help='model train LightGBM')
 parser.add_argument("--is_subway", type=bool, default=False, help='Add grade based on distance to subway station')
+parser.add_argument("--early_stopping_rounds", type=int, default=50, help='Only Using lightGBM')
 parser.add_argument("--n_estimator", type=int, default=100, help="RandomForest estimator num")
 parser.add_argument("--train_data_path", type=str, default="../../data/train.csv", help="train data path") 
 parser.add_argument("--test_data_path", type=str, default="../../data/test.csv", help="test data path") 
@@ -55,7 +56,7 @@ if __name__ == "__main__":
                 eval_set = [(X_train, y_train), (X_val, y_val)],
                 eval_metric = 'rmse',
                 categorical_feature="auto",
-                callbacks = [lgb.early_stopping(stopping_rounds=50),
+                callbacks = [lgb.early_stopping(stopping_rounds=args.early_stopping_rounds),
                             lgb.log_evaluation(period=10, show_stdv=True)
                 ] # early stopping 적용
         )
