@@ -85,7 +85,7 @@ def feature_selection(dt, dt_test, is_feature_reduction=False):
         selected = list(concat.columns[concat.isnull().sum() <= 1000000])
         save_columns = [
             "계약년월", "전용면적", "시군구",
-            "건축년도", "강남여부", "좌표X",
+            "건축년도", "강남여부", "좌표X", "좌표Y",
             'target', 'is_test', "도로명", "부번"]
             # '전용면적','계약년월','건축년도',
                         #  '강남여부', '신축여부','시군구',
@@ -210,6 +210,10 @@ def feature_engineering(concat_select, is_feature_engineering=False):
 
         gu_encoding_map = targetEncoding(concat_select, '구')
 
+    # concat_select['계절'] = concat_select['계약월'].map({'12':'겨울', '01':'겨울', '02':'겨울', '03':'봄', '04':'봄', '05':'봄', '06':'여름', '07':'여름', '08':'여름', '09':'가을', '10':'가을', '11':'가을'})
+
+    # concat_select['면적당가격'] = concat_select['target'] / concat_select['전용면적']
+
     # targetEncoding(concat_select, '구')
 
     # 건축년도 분포는 아래와 같습니다. 특히 2005년이 Q3에 해당합니다.
@@ -264,10 +268,9 @@ def feature_encoding(dt_train, dt_test):
 
     return dt_train, dt_test, categorical_columns_v2, label_encoders
 
-def load_data(is_feature_reduction=False, is_feature_engineering=False): 
+def load_data(train_path='../../data/train.csv', test_path='../../data/test.csv', is_feature_reduction=False, is_feature_engineering=False): 
    # 필요한 데이터를 load 하겠습니다. 경로는 환경에 맞게 지정해주면 됩니다.
-    train_path = '../../data/train.csv'
-    test_path  = '../../data/test.csv'
+
     dt = pd.read_csv(train_path)
     dt_test = pd.read_csv(test_path)
 

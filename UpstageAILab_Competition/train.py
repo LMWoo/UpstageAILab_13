@@ -22,19 +22,28 @@ parser = argparse.ArgumentParser(description="Train parser")
 
 parser.add_argument("--is_feature_reduction", type=bool, default=False, help='50 features -> top 8 features')
 parser.add_argument("--is_feature_engineering", type=bool, default=False, help='gu -> High, Mid, Low')
+parser.add_argument("--is_logScale", type=bool, default=False, help='target -> logScale')
 parser.add_argument("--n_estimator", type=int, default=100, help="RandomForest estimator num")
+parser.add_argument("--train_data_path", type=str, default="../../data/train.csv", help="train data path") 
+parser.add_argument("--test_data_path", type=str, default="../../data/test.csv", help="test data path") 
 parser.add_argument("--model_name", type=str, default="save_model")
 
 if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    X_train, y_train, X_val, y_val, categorical_columns_v2, label_encoders, dt_test = load_data(args.is_feature_reduction, args.is_feature_engineering)
+    X_train, y_train, X_val, y_val, categorical_columns_v2, label_encoders, dt_test = load_data(args.train_data_path, args.test_data_path, args.is_feature_reduction, args.is_feature_engineering)
+
+    if args.is_logScale == True:
+        y_train = np.log(y_train)
 
     # RandomForestRegressor를 이용해 회귀 모델을 적합시키겠습니다.
     model = RandomForestRegressor(n_estimators=args.n_estimator, criterion='squared_error', random_state=1, n_jobs=-1)
     model.fit(X_train, y_train)
     pred = model.predict(X_val)
+
+    if args.is_logScale == True:
+        pred = np.expm1(pred)
 
     print(f'RMSE test: {np.sqrt(metrics.mean_squared_error(y_val, pred))}')
 
@@ -50,6 +59,7 @@ if __name__ == "__main__":
     with open('./weights/'+ args.model_name + '.pkl', 'wb') as f:
         pickle.dump(model, f)
 
+    print('saved train model')
     # # Permutation importance 방법을 변수 선택에 이용해보겠습니다.
     # perm = PermutationImportance(model,        # 위에서 학습된 모델을 이용하겠습니다.
     #                             scoring = "neg_mean_squared_error",        # 평가 지표로는 회귀문제이기에 negative rmse를 사용합니다. (neg_mean_squared_error : 음의 평균 제곱 오차)
