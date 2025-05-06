@@ -1,7 +1,7 @@
 # UpstageAILab ML 경진대회
 
 ## 프로젝트 구성
-### 1. Baseline Code
+### 1. Baseline 구조
 기본적인 데이터 전처리 및 학습 파이프라인 구축
 
 
