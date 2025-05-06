@@ -20,8 +20,8 @@ import argparse
 
 parser = argparse.ArgumentParser(description="Train parser")
 
-parser.add_argument("--is_feature_reduction", type=bool, default=False, description='50 features -> top 8 features')
-parser.add_argument("--is_feature_engineering", type=bool, default=False, description='gu -> High, Mid, Low')
+parser.add_argument("--is_feature_reduction", type=bool, default=False, help='50 features -> top 8 features')
+parser.add_argument("--is_feature_engineering", type=bool, default=False, help='gu -> High, Mid, Low')
 parser.add_argument("--model_name", type=str, default="save_model")
 
 if __name__ == "__main__":
