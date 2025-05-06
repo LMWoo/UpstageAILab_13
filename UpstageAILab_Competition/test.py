@@ -26,6 +26,7 @@ parser.add_argument("--is_feature_reduction", type=bool, default=False, help='50
 parser.add_argument("--is_feature_engineering", type=bool, default=False, help='gu -> High, Mid, Low')
 parser.add_argument("--is_logScale", type=bool, default=False, help='target -> logScale')
 parser.add_argument("--is_lightGBM", type=bool, default=False, help='model train LightGBM')
+parser.add_argument("--is_subway", type=bool, default=False, help='Add grade based on distance to subway station')
 parser.add_argument("--train_data_path", type=str, default="../../data/train.csv", help="train data path") 
 parser.add_argument("--test_data_path", type=str, default="../../data/test.csv", help="test data path") 
 parser.add_argument("--model_name", type=str, default="save_model")
@@ -35,7 +36,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    X_train, y_train, X_val, y_val, categorical_columns_v2, label_encoders, dt_test = load_data(args.train_data_path, args.test_data_path, args.is_feature_reduction, args.is_feature_engineering)
+    X_train, y_train, X_val, y_val, categorical_columns_v2, label_encoders, dt_test = load_data(args.train_data_path, args.test_data_path, args.is_feature_reduction, args.is_feature_engineering, args.is_subway)
 
 
     dt_test.head(2)      # test dataset에 대한 inference를 진행해보겠습니다.

@@ -29,7 +29,7 @@ from eli5.sklearn import PermutationImportance
 
 from utils.encoding import targetEncoding
 
-def feature_selection(dt, dt_test, is_feature_reduction=False):
+def feature_selection(dt, dt_test, is_feature_reduction=False, is_subway=False):
 
     # Train data와 Test data shape은 아래와 같습니다.
     print('Train data shape : ', dt.shape, 'Test data shape : ', dt_test.shape)
@@ -81,9 +81,12 @@ def feature_selection(dt, dt_test, is_feature_reduction=False):
 
     # 위에서 결측치가 100만개 이하인 변수들만 골라 새로운 concat_select 객체로 저장해줍니다.
 
+    save_columns = [ "건축년도", "계약년월", "전용면적", "시군구", "부번", "신축여부", "강남여부", 'target', 'is_test']
+    
+    if is_subway == True:
+        save_columns.append('is_subway_near')
     if is_feature_reduction == True:
         selected = list(concat.columns[concat.isnull().sum() <= 1000000])
-        save_columns = [ "건축년도", "계약년월", "전용면적", "시군구", "부번", "신축여부", "강남여부", 'target', 'is_test']
             # "건축년도", 
             # "좌표X", "좌표Y",
             # "도로명",
@@ -265,13 +268,13 @@ def feature_encoding(dt_train, dt_test):
 
     return dt_train, dt_test, categorical_columns_v2, label_encoders
 
-def load_data(train_path='../../data/train.csv', test_path='../../data/test.csv', is_feature_reduction=False, is_feature_engineering=False): 
+def load_data(train_path='../../data/train.csv', test_path='../../data/test.csv', is_feature_reduction=False, is_feature_engineering=False, is_subway = False): 
    # 필요한 데이터를 load 하겠습니다. 경로는 환경에 맞게 지정해주면 됩니다.
 
     dt = pd.read_csv(train_path)
     dt_test = pd.read_csv(test_path)
 
-    concat_select = feature_selection(dt, dt_test, is_feature_reduction)
+    concat_select = feature_selection(dt, dt_test, is_feature_reduction, is_subway)
     concat_select = feature_engineering(concat_select, is_feature_engineering)
     
     print(concat_select.head(1))      # 최종 데이터셋은 아래와 같습니다.)
