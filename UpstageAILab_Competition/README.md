@@ -27,14 +27,37 @@ Advanced ML 강의 수강 후 실습 진행
 
 ### 9. Experiment Notes
 
+# 📚 실험 기록
+
 <details>
-<summary>실험 기록 보기</summary>
+<summary>🚀 LightGBM 실험</summary>
 
-여기에 실험 기록 내용을 적습니다.  
-접힌 부분을 클릭하면 열립니다.
+### 실험 내용
 
-- 실험 1: ...
-- 실험 2: ...
-- 실험 3: ...
+- max_depth 튜닝
+- learning_rate 조정
+- k-Fold 5개로 검증
+
+</details>
+
+<details>
+<summary>🔧 XGBoost 실험</summary>
+
+### 실험 내용
+
+- early_stopping 사용
+- categorical feature 처리
+- Test set 결과 비교
+
+</details>
+
+<details>
+<summary>📈 모델 앙상블 실험</summary>
+
+### 실험 내용
+
+- Voting
+- Stacking
+- 최종 성능 비교
 
 </details>
