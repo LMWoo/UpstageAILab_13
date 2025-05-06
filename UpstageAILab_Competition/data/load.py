@@ -27,7 +27,7 @@ from sklearn import metrics
 import eli5
 from eli5.sklearn import PermutationImportance
 
-def load_data(): 
+def load_data(feature_reduction=False): 
    # 필요한 데이터를 load 하겠습니다. 경로는 환경에 맞게 지정해주면 됩니다.
     train_path = '../../data/train.csv'
     test_path  = '../../data/test.csv'
@@ -83,8 +83,27 @@ def load_data():
     print("* 결측치가 100만개 이상인 변수들 :", list(concat.columns[concat.isnull().sum() >= 1000000]))
 
     # 위에서 결측치가 100만개 이하인 변수들만 골라 새로운 concat_select 객체로 저장해줍니다.
-    selected = list(concat.columns[concat.isnull().sum() <= 1000000])
-    concat_select = concat[selected]
+
+    if feature_reduction == True:
+        selected = list(concat.columns[concat.isnull().sum() <= 1000000])
+        save_columns = [
+            "계약년월", "전용면적", "시군구",
+            "건축년도", "강남여부", "좌표X",
+            'target', 'is_test', "도로명", "부번"]
+            # '전용면적','계약년월','건축년도',
+                        #  '강남여부', '신축여부','시군구',
+                        #  '좌표X', '좌표Y',
+                        #  'k-건설사(시공사)', 'k-시행사',
+                        #  'k-주거전용면적','k-전체동수', 
+                        # '주차대수',
+                        #  '본번', '부번', '아파트명', '도로명','번지', 'target', 'is_test']
+        selected = [x for x in selected if x in save_columns]
+        concat_select = concat[selected]
+    else:
+        selected = list(concat.columns[concat.isnull().sum() <= 1000000])
+        concat_select = concat[selected]
+
+
 
     print(concat_select.isnull().sum())     # 결측치가 100만개 초과인 칼럼이 제거된 모습은 아래와 같습니다.
 
