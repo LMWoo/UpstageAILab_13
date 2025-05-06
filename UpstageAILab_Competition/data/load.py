@@ -29,8 +29,8 @@ from eli5.sklearn import PermutationImportance
 
 def load_data(): 
    # 필요한 데이터를 load 하겠습니다. 경로는 환경에 맞게 지정해주면 됩니다.
-    train_path = '../data/train.csv'
-    test_path  = '../data/test.csv'
+    train_path = '../../data/train.csv'
+    test_path  = '../../data/test.csv'
     dt = pd.read_csv(train_path)
     dt_test = pd.read_csv(test_path)
 
