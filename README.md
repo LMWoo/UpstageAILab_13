@@ -2,6 +2,8 @@
 
 ## UpstageAILab ML 경진대회
 
+[UpstageAILab ML 경진대회](./UpstageAILab_Competition)
+
 주제: 아파트 실거래가 예측
 설명:
 서울시 아파트 실거래가 데이터를 기반으로 아파트 가격을 예측하는 경진대회
