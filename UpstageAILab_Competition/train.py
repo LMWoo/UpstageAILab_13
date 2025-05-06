@@ -22,6 +22,7 @@ parser = argparse.ArgumentParser(description="Train parser")
 
 parser.add_argument("--is_feature_reduction", type=bool, default=False, help='50 features -> top 8 features')
 parser.add_argument("--is_feature_engineering", type=bool, default=False, help='gu -> High, Mid, Low')
+parser.add_argument("--n_estimator", type=int, default=100, help="RandomForest estimator num")
 parser.add_argument("--model_name", type=str, default="save_model")
 
 if __name__ == "__main__":
@@ -31,7 +32,7 @@ if __name__ == "__main__":
     X_train, y_train, X_val, y_val, categorical_columns_v2, label_encoders, dt_test = load_data(args.is_feature_reduction, args.is_feature_engineering)
 
     # RandomForestRegressor를 이용해 회귀 모델을 적합시키겠습니다.
-    model = RandomForestRegressor(n_estimators=100, criterion='squared_error', random_state=1, n_jobs=-1)
+    model = RandomForestRegressor(n_estimators=args.n_estimator, criterion='squared_error', random_state=1, n_jobs=-1)
     model.fit(X_train, y_train)
     pred = model.predict(X_val)
 
