@@ -1,1 +1,0 @@
-python test.py --is_feature_reduction=True --is_feature_engineering=True --model_name=feature_engineering_model --save_file=feature_engineering

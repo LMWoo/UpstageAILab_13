@@ -1,1 +1,0 @@
-python test.py --is_feature_reduction=True --model_name=estimator_300_model --save_file=estimator_300

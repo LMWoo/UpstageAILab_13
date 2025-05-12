@@ -1,45 +1,285 @@
-# UpstageAILab ML 경진대회
+# Title (Please modify the title)
+## Team
 
-## 프로젝트 구성
-### 1. Baseline 구조
-기본적인 데이터 전처리 및 학습 파이프라인 구축
+| ![이패캠](https://avatars.githubusercontent.com/u/156163982?v=4) | ![이패캠](https://avatars.githubusercontent.com/u/156163982?v=4) | ![최패캠](https://avatars.githubusercontent.com/u/156163982?v=4) | ![김패캠](https://avatars.githubusercontent.com/u/156163982?v=4) | ![오패캠](https://avatars.githubusercontent.com/u/156163982?v=4) |
+| :--------------------------------------------------------------: | :--------------------------------------------------------------: | :--------------------------------------------------------------: | :--------------------------------------------------------------: | :--------------------------------------------------------------: |
+|            [이민우](https://github.com/UpstageAILab)             |            [박진일](https://github.com/UpstageAILab)             |            [정예규](https://github.com/UpstageAILab)             |            [조은별](https://github.com/UpstageAILab)             |            [조재형](https://github.com/UpstageAILab)             |
+|                            팀장, 담당 역할                             |                            담당 역할                             |                            담당 역할                             |                            담당 역할                             |                            담당 역할                             |
 
+## 0. Overview
+### Environment
+- _Write Development environment_
 
-#### EDA (Exploratory Data Analysis)
- - 데이터 형식 : csv형태 정형 데이터 
- - 결측치 확인 (df.info(), df.describe(), df.isnull().sum())
- - 범주형, 숫자형 분리 
+### Requirements
+- _Write Requirements_
 
-#### Feature Selection
- - 결측치 90% 이상인 특징 제거
+## 1. Components
 
-#### Feature Engineering
- - 숫자형 결측치 선형 보간, 범주형 결측치 Label encoding 적용
- - 계약년월 → 계약년, 계약월로 파생
+### Directory
 
-#### Model Selection
-트리 기반 모델 : RandomForest 사용, Overfitting 가능성 낮음
+- 각 작업자 폴더명
+  - lmw: 이민우, pji: 박진일, jyg: 정예규, jeb: 조은별, jjh: 조재형
+   
+- 프로젝트 폴더 구조
+  ```
+  ├── data # Data 전처리
+  │   ├── base.py
+  │   │── 작업자 A
+  │   │   ├── dataprocess_1.py
+  │   │   ├── dataprocess_2.py
+  │   │   └── dataprocess_3.py
+  │   │── 작업자 B
+  │   │── 작업자 C
+  ├── experiments # 실험별 학습, 평가, 테스트 실행하는 bash 파일
+  │   │── 작업자 A
+  │   │   └── exp_1
+  │   │   │   ├── train.sh
+  │   │   │   └── test.sh
+  │   │   └── exp_2
+  │   │       ├── train.sh
+  │   │       └── test.sh    
+  │   │── 작업자 B
+  │   │── 작업자 C
+  ├── features # 현재 기능 없음
+  ├── models # 학습 모델
+  │   ├── base.py
+  │   │── 작업자 A
+  │   │   ├── model_1.py
+  │   │   ├── model_2.py
+  │   │   └── model_3.py
+  │   │── 작업자 B
+  │   │── 작업자 C
+  ├── notebooks # EDA 등 개인별 작업 notebook
+  │   │── 작업자 A
+  │   │── 작업자 B
+  │   │── 작업자 C
+  ├── utils 
+  └── main.py
+  ```
 
-#### Model Train & Validation
- - sklearn의 RandomForestRegressor사용 하여 학습
-   - 학습 파라미터 : n_estimators=100, criterion='squared_error'
-   - data : 8:2로 train, valiation data random split 
+## 2. Develop Guide
 
-#### Feature Importance
+### 1. Data Preprocess
 
-#### Test
- - 학습된 모델로 예측 수행
+ - Data folder -> 본인 폴더 -> tutorial_process.py
+ - feature_selection : 결측치 처리, 변수 구분 (범주형, 연속형), 대체 및 삭제, 이상치 제거 등 개발
+ - feature_engineering : 파생 변수 개발
+ - 작업 위치
+   ```
+   ├── data
+   │   ├── base.py
+   │   │── 작업자 A
+   │   │   ├── tutorial_process.py
+   ```
 
-### 3. EDA
+ - 코드 구조 : Base
+   ```
+   # Base Class
+   class BasePreprocess:
+       def __init__(self):
+           self.train_data = None
+           self.test_data = None
+           self.concat = None
+   
+       # main 에서 호출 되는 함수
+       @final
+       def preprocess_data(self): 
+           self.feature_selection()
+           self.feature_engineering()
 
-### 4. Feature Selection
+       # 결측치, 이상치 처리
+       @abstractmethod
+       def feature_selection(self):
+           pass
 
-### 5. Feature Engineering
+       # 파생 변수 예시
+       @abstractmethod
+       def feature_engineering(self):
+           pass
+   ```
+ - 실제 개발 예시 : lmw -> tutorial_dataprocess.py, 길어서 일부 생략
+   ```
+   import pandas as pd
+   import pickle
+   from data.base import BasePreprocess
+   from tqdm import tqdm
+   import numpy as np
+   
+   # baseline 코드 모듈화
+   class TutorialPreprocess(BasePreprocess):
+       def __init__(self):
+           super().__init__()
+           self.train_data = pd.read_csv("../data/train.csv")
+           self.test_data = pd.read_csv("../data/test.csv")
+   
+           self.train_data['is_test'] = 0
+           self.test_data['is_test'] = 1
+           
+           self.concat = pd.concat([self.train_data, self.test_data])
+           self.concat = self.concat.rename(columns={'전용면적(㎡)':'전용면적'})
+   
+       # 결측치, 이상치 처리 예시
+       def feature_selection(self):
+           print('start feature selection')
+           # 결측치 탐색 및 보간
+           self.concat['등기신청일자'] = self.concat['등기신청일자'].replace(' ', np.nan)
+           self.concat['거래유형'] = self.concat['거래유형'].replace('-', np.nan)
+           self.concat['중개사소재지'] = self.concat['중개사소재지'].replace('-', np.nan)
+   
+           # 이상치 제거 방법에는 IQR을 이용하겠습니다.
+           def remove_outliers_iqr(dt, column_name):
+               df = dt.query('is_test == 0')       # train data 내에 있는 이상치만 제거하도록 하겠습니다.
+               df_test = dt.query('is_test == 1')
+   
+               Q1 = df[column_name].quantile(0.25)
+               Q3 = df[column_name].quantile(0.75)
+               IQR = Q3 - Q1
+   
+               lower_bound = Q1 - 1.5 * IQR
+               upper_bound = Q3 + 1.5 * IQR
+   
+               df = df[(df[column_name] >= lower_bound) & (df[column_name] <= upper_bound)]
+   
+               result = pd.concat([df, df_test])   # test data와 다시 합쳐주겠습니다.
+               return result
+   
+           self.concat = remove_outliers_iqr(concat_select, '전용면적')
+           print('finish feature selection')
+   
+       # 파생 변수 예시
+       def feature_engineering(self):
+           is_gangnam = []
+           for x in concat_select['구'].tolist():
+               if x in gangnam :
+                   is_gangnam.append(1)
+               else :
+                   is_gangnam.append(0)
+   
+           # 파생변수를 하나 만듭니다.
+           concat_select['강남여부'] = is_gangnam
+       self.concat = concat_select
+   ```
+ - 주의사항
+   - BasePreprocess 상속 필수
+     ```
+     class BaselinePreprocess(BasePreprocess):
+     ```
+   - init : 이 구문 필수로 넣어야함
+     ```
+     self.train_data['is_test'] = 0
+     self.test_data['is_test'] = 1
+        
+     self.concat = pd.concat([self.train_data, self.test_data])
+     ```
+   - feature_selection, feature_engineering 함수 마지막 부분에 concat Update 필수
+     ```
+     self.concat = concat_select
+     ```
+### 2. Experiments
+ - 작업 위치
+   ```
+   ├── experiments
+   │   │── 작업자 A
+   │   │   └── exp_1
+   │   │   │   ├── train.sh
+   │   │   │   └── test.sh
+   │   │   └── exp_2
+   │   │       ├── train.sh
+   │   │       └── test.sh    
+   ```
+   
+ - bash 작성
+   ```
+   python main.py \
+    --data=[본인 작업 폴더].[preprocess 파일명].[preprocess 클래스명] \
+    --model=lmw.tutorial.TutorialModel \ # Baseline 기본 모델, RandomForest
+    --data_root_path=[data_root path] \
+    --model_name=[학습된 모델 이름] \
+    --test_result_file=[csv 저장 이름] \
+    --mode=[train or test]
+   ```
+   
+ - bash 실행
+   ```
+   cd [project folder]
+   bash ./experiments/[작업 폴더]/[실험 이름]/train.sh or test.sh
+   # ex) bash ./experiments/lmw/tutorial/train.sh
+   ```
 
-### 6. Model Selection
+## 3. Data descrption
 
-### 7. Model Training & Validation
+### Dataset overview
 
-### 8. Model Test
+- _Explain using data_
 
-### 9. Experiment Notes
+### EDA
+
+- _Describe your EDA process and step-by-step conclusion_
+
+### Data Processing
+
+- _Describe data processing process (e.g. Data Labeling, Data Cleaning..)_
+
+## 4. Modeling
+
+### Model descrition
+
+- _Write model information and why your select this model_
+
+### Modeling Process
+
+- _Write model train and test process with capture_
+
+## 5. Result
+
+### Leader Board
+
+- _Insert Leader Board Capture_
+- _Write rank and score_
+
+### Presentation
+
+- _Insert your presentaion file(pdf) link_
+
+## 6. Getting Start
+
+### Clone the Repository
+
+```
+git clone git@github.com:AIBootcamp13/upstage-ml-regression-ml_1.git
+cd upstage-ml-regression-ml_1
+```
+
+### Environment Setting
+
+```
+virtualenv ./envs/[envname]
+source ./envs/[envname]/bin/activate
+```
+
+### Install Packages
+
+```
+pip install -r requirements.txt
+```
+
+### Train
+
+```
+bash ./experiments/lmw/baseline/train.sh
+```
+
+### Test
+
+```
+bash ./experiments/lmw/baseline/test.sh
+```
+
+## 7. etc
+### Meeting Log
+
+- _Insert your meeting log link like Notion or Google Docs_
+
+### Reference
+
+- _Insert related reference_

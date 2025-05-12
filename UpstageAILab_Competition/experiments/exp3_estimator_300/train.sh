@@ -1,1 +1,0 @@
-python train.py --is_feature_reduction=True --model_name=estimator_300_model --n_estimator=300 

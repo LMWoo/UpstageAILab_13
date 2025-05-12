@@ -1,30 +1,42 @@
+import os
+import pandas as pd
+from typing import final
+from abc import ABC, abstractmethod
+from sklearn.model_selection import train_test_split
 
-# # visualization
-# import matplotlib.pyplot as plt
-# import matplotlib.font_manager as fm
-# fe = fm.FontEntry(
-#     fname=r'/usr/share/fonts/truetype/nanum/NanumGothic.ttf', # ttf 파일이 저장되어 있는 경로
-#     name='NanumBarunGothic')                        # 이 폰트의 원하는 이름 설정
-# fm.fontManager.ttflist.insert(0, fe)              # Matplotlib에 폰트 추가
-# plt.rcParams.update({'font.size': 10, 'font.family': 'NanumBarunGothic'}) # 폰트 설정
-# plt.rc('font', family='NanumBarunGothic')
-# import seaborn as sns
+class BaseModel:
+    def __init__(self, data_preprocessor):
+        self.data_preprocessor = data_preprocessor
+        pass
 
-# # utils
-# import pandas as pd
-# import numpy as np
-# from tqdm import tqdm
-# import pickle
-# import warnings;warnings.filterwarnings('ignore')
+    @abstractmethod
+    def encoding(self):
+        pass
 
-# # Model
-# from sklearn.preprocessing import LabelEncoder
-# from sklearn.model_selection import train_test_split
-# from sklearn.metrics import mean_squared_error
-# from sklearn.ensemble import RandomForestRegressor
-# from sklearn import metrics
+    @abstractmethod
+    def splitdata(self):
+        pass
 
-# import eli5
-# from eli5.sklearn import PermutationImportance
+    @abstractmethod
+    def train(self):
+        pass
 
-# class BaseModel():
+    @abstractmethod
+    def validation(self):
+        pass
+
+    @abstractmethod
+    def test(self):
+        pass
+
+    @abstractmethod
+    def analysis_validation(self, save_path):
+        pass
+
+    @abstractmethod
+    def save_model(self, save_path):
+        pass
+
+    @abstractmethod
+    def load_model(self, load_path):
+        pass
