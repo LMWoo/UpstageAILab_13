@@ -4,19 +4,20 @@ import warnings;warnings.filterwarnings('ignore')
 import argparse
 import os
 
+from sklearn.model_selection import train_test_split
 from utils.util import dynamic_preprocessing_import
 
 parser = argparse.ArgumentParser(description="Train parser")
 
-parser.add_argument("--is_feature_reduction", type=bool, default=False, help='50 features -> top 8 features')
-parser.add_argument("--is_feature_engineering", type=bool, default=False, help='gu -> High, Mid, Low')
-parser.add_argument("--is_logScale", type=bool, default=False, help='target -> logScale')
-parser.add_argument("--is_lightGBM", type=bool, default=False, help='model train LightGBM')
-parser.add_argument("--is_subway", type=bool, default=False, help='Add grade based on distance to subway station')
-parser.add_argument("--early_stopping_rounds", type=int, default=50, help='Only Using lightGBM')
-parser.add_argument("--n_estimator", type=int, default=100, help="RandomForest estimator num")
-parser.add_argument("--train_data_path", type=str, default="../../data/train.csv", help="train data path") 
-parser.add_argument("--test_data_path", type=str, default="../../data/test.csv", help="test data path") 
+# parser.add_argument("--is_feature_reduction", type=bool, default=False, help='50 features -> top 8 features')
+# parser.add_argument("--is_feature_engineering", type=bool, default=False, help='gu -> High, Mid, Low')
+# parser.add_argument("--is_logScale", type=bool, default=False, help='target -> logScale')
+# parser.add_argument("--is_lightGBM", type=bool, default=False, help='model train LightGBM')
+# parser.add_argument("--is_subway", type=bool, default=False, help='Add grade based on distance to subway station')
+# parser.add_argument("--early_stopping_rounds", type=int, default=50, help='Only Using lightGBM')
+# parser.add_argument("--n_estimator", type=int, default=100, help="RandomForest estimator num")
+# parser.add_argument("--train_data_path", type=str, default="../../data/train.csv", help="train data path") 
+# parser.add_argument("--test_data_path", type=str, default="../../data/test.csv", help="test data path") 
 
 parser.add_argument("--data", type=str, default='BaselinePreprocess', help='Data Preprocessing ClassName')
 parser.add_argument("--data_root_path", type=str, default='../data', help='data root path')
@@ -41,10 +42,14 @@ if __name__ == "__main__":
     
     data_preprocessor = data_preprocessor_cls()
     data_preprocessor.preprocess_data()
+    preprocessed_data = data_preprocessor.get_preprocessed_data()
+    
+    Y_train = preprocessed_data['X_train']['target']
+    X_train = preprocessed_data['X_train'].drop(['target'], axis=1)
+    X_train, X_val, Y_train, Y_val = train_test_split(X_train, Y_train, test_size=0.2, random_state=2023)
+    X_test = preprocessed_data['X_test']
 
-    model = model_cls(data_preprocessor)
-    model.encoding()
-    model.splitdata()
+    model = model_cls(X_train, X_val, Y_train, Y_val, X_test)
 
     if args.mode == 'train':
         model.train()

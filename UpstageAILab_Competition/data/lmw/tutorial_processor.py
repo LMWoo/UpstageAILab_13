@@ -2,6 +2,7 @@ import pandas as pd
 import pickle
 from data.base import BasePreprocess
 from tqdm import tqdm
+from sklearn.preprocessing import LabelEncoder
 import numpy as np
 
 class TutorialPreprocess(BasePreprocess):
@@ -18,6 +19,11 @@ class TutorialPreprocess(BasePreprocess):
 
     def feature_selection(self):
         print('start feature selection')
+
+        print('finish feature selection')
+
+    def feature_cleaning(self):
+        print('start feature cleaning')
         # 결측치 탐색 및 보간
         self.concat['등기신청일자'] = self.concat['등기신청일자'].replace(' ', np.nan)
         self.concat['거래유형'] = self.concat['거래유형'].replace('-', np.nan)
@@ -69,7 +75,7 @@ class TutorialPreprocess(BasePreprocess):
             return result
 
         self.concat = remove_outliers_iqr(concat_select, '전용면적')
-        print('finish feature selection')
+        print('finish feature cleaning')
 
     def feature_engineering(self):
         print('start feature engineering')
@@ -105,3 +111,47 @@ class TutorialPreprocess(BasePreprocess):
 
         self.concat = concat_select
         print('finish feature engineering')
+
+    def encoding(self):
+        print('start encoding')
+        dt_train = self.concat.query('is_test==0')
+        dt_test = self.concat.query('is_test==1')
+
+        dt_train.drop(['is_test'], axis=1, inplace=True)
+        dt_test.drop(['is_test'], axis=1, inplace=True)
+
+        print(dt_train.shape, dt_test.shape)
+
+        continuous_columns_v2 = []
+        categorical_columns_v2 = []
+
+        for column in dt_train.columns:
+            if pd.api.types.is_numeric_dtype(dt_train[column]):
+                continuous_columns_v2.append(column)
+            else:
+                categorical_columns_v2.append(column)
+
+        print("연속형 변수:", continuous_columns_v2)
+        print("범주형 변수:", categorical_columns_v2)
+
+        for col in tqdm( categorical_columns_v2 ):
+            lbl = LabelEncoder()
+
+            # Label-Encoding을 fit
+            lbl.fit( dt_train[col].astype(str) )
+            dt_train[col] = lbl.transform(dt_train[col].astype(str))
+            self.label_encoders[col] = lbl           # 나중에 후처리를 위해 레이블인코더를 저장해주겠습니다.
+
+            # Test 데이터에만 존재하는 새로 출현한 데이터를 신규 클래스로 추가해줍니다.
+            for label in np.unique(dt_test[col]):
+                if label not in lbl.classes_: # unseen label 데이터인 경우
+                    lbl.classes_ = np.append(lbl.classes_, label) # 미처리 시 ValueError발생하니 주의하세요!
+
+            dt_test[col] = lbl.transform(dt_test[col].astype(str))
+
+        self.preprocessed_data = {'X_train': dt_train, 'X_test': dt_test}
+
+        print('finish encoding')
+
+    def get_preprocessed_data(self):
+        return self.preprocessed_data

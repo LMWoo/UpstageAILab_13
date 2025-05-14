@@ -10,8 +10,6 @@ plt.rcParams.update({'font.size': 10, 'font.family': 'NanumBarunGothic'}) # 폰�
 plt.rc('font', family='NanumBarunGothic')
 import seaborn as sns
 from tqdm import tqdm
-from sklearn.preprocessing import LabelEncoder
-from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn import metrics
 import os
@@ -23,70 +21,11 @@ from eli5.sklearn import PermutationImportance
 from models.base import BaseModel
 
 class BaselineModel(BaseModel):
-    def __init__(self, data_preprocessor):
-        super().__init__(data_preprocessor)
+    def __init__(self, X_train, X_val, Y_train, Y_val, X_test):
+        super().__init__(X_train, X_val, Y_train, Y_val, X_test)
         print('Baseline model initialize')
-
-        self.label_encoders = {}
-
-        self.X_train = None
-        self.X_val = None
-        self.Y_train = None
-        self.Y_val = None
-        self.Pred_val = None
-
-        self.X_test = None
-
+        
         self.model = RandomForestRegressor(n_estimators=5, criterion='squared_error', random_state=1, n_jobs=1)
-
-    def encoding(self):
-        print('start encoding')
-        dt_train = self.data_preprocessor.concat.query('is_test==0')
-        dt_test = self.data_preprocessor.concat.query('is_test==1')
-
-        dt_train.drop(['is_test'], axis=1, inplace=True)
-        dt_test.drop(['is_test'], axis=1, inplace=True)
-
-        print(dt_train.shape, dt_test.shape)
-
-        continuous_columns_v2 = []
-        categorical_columns_v2 = []
-
-        for column in dt_train.columns:
-            if pd.api.types.is_numeric_dtype(dt_train[column]):
-                continuous_columns_v2.append(column)
-            else:
-                categorical_columns_v2.append(column)
-
-        print("연속형 변수:", continuous_columns_v2)
-        print("범주형 변수:", categorical_columns_v2)
-
-        for col in tqdm( categorical_columns_v2 ):
-            lbl = LabelEncoder()
-
-            # Label-Encoding을 fit
-            lbl.fit( dt_train[col].astype(str) )
-            dt_train[col] = lbl.transform(dt_train[col].astype(str))
-            self.label_encoders[col] = lbl           # 나중에 후처리를 위해 레이블인코더를 저장해주겠습니다.
-
-            # Test 데이터에만 존재하는 새로 출현한 데이터를 신규 클래스로 추가해줍니다.
-            for label in np.unique(dt_test[col]):
-                if label not in lbl.classes_: # unseen label 데이터인 경우
-                    lbl.classes_ = np.append(lbl.classes_, label) # 미처리 시 ValueError발생하니 주의하세요!
-
-            dt_test[col] = lbl.transform(dt_test[col].astype(str))
-
-        self.X_train = dt_train
-        self.X_test = dt_test
-
-        print('finish encoding')
-
-    def splitdata(self):
-        print('start split data')
-        self.Y_train = self.X_train['target']
-        self.X_train = self.X_train.drop(['target'], axis=1)
-        self.X_train, self.X_val, self.Y_train, self.Y_val = train_test_split(self.X_train, self.Y_train, test_size=0.2, random_state=2023)
-        print('finish split data')
 
     def train(self):
         print('start model train')

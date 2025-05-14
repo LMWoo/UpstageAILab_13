@@ -5,16 +5,12 @@ from abc import ABC, abstractmethod
 from sklearn.model_selection import train_test_split
 
 class BaseModel:
-    def __init__(self, data_preprocessor):
-        self.data_preprocessor = data_preprocessor
-        pass
-
-    @abstractmethod
-    def encoding(self):
-        pass
-
-    @abstractmethod
-    def splitdata(self):
+    def __init__(self, X_train, X_val, Y_train, Y_val, X_test):
+        self.X_train = X_train
+        self.X_val = X_val
+        self.Y_train = Y_train
+        self.Y_val = Y_val
+        self.X_test = X_test
         pass
 
     @abstractmethod
