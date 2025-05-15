@@ -102,7 +102,7 @@ class LightGBMModel(BaseModel):
         for column in data_preprocessor.categorical_columns:
             best_top100[column] = data_preprocessor.label_encoders[column].inverse_transform(X_val_sort_tail100[column])
 
-        fig, axes = plt.subplots(1, 2, figsize=(12, 4))
+        fig, axes = plt.subplots(2, 1, figsize=(12, 8))
 
         sns.boxplot(data = error_top100, x='target', ax=axes[0])
         axes[0].set_title('Worst Top 100')
@@ -119,6 +119,7 @@ class LightGBMModel(BaseModel):
             pass
         plt.savefig(os.path.join(save_comparision_path, 'top_worst_100_boxplot.png'), dpi=300)
 
+        print(data_preprocessor.categorical_columns)
         for column in data_preprocessor.categorical_columns:
             plt.figure(figsize=(30,15))
 
