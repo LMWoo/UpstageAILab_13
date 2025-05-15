@@ -5,7 +5,7 @@ from tqdm import tqdm
 from sklearn.preprocessing import LabelEncoder
 import numpy as np
 
-class Feature1_Preprocess(BasePreprocess):
+class Data_1_Preprocess(BasePreprocess):
     def __init__(self):
         super().__init__()
         self.train_data = pd.read_csv("../../data/train.csv")
