@@ -44,7 +44,7 @@ class BaselineModel(BaseModel):
         real_test_pred = self.model.predict(self.X_test)
         return real_test_pred
 
-    def analysis_validation(self, save_path):
+    def analysis_validation(self, save_root_path, data_preprocessor):
         # 변수 중요도 확인
         importances = pd.Series(self.model.feature_importances_, index=list(self.X_train.columns))
         importances = importances.sort_values(ascending=False)
@@ -52,7 +52,7 @@ class BaselineModel(BaseModel):
         plt.figure(figsize=(10,8))
         plt.title("Feature Importances")
         sns.barplot(x=importances, y=importances.index)
-        plt.savefig(save_path)
+        plt.savefig(os.path.join(save_root_path, 'FeatureImportances.png'))
 
         # perm = PermutationImportance(self.model,        # 위에서 학습된 모델을 이용하겠습니다.
         #                      scoring = "neg_mean_squared_error",        # 평가 지표로는 회귀문제이기에 negative rmse를 사용합니다. (neg_mean_squared_error : 음의 평균 제곱 오차)

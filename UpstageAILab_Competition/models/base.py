@@ -26,7 +26,7 @@ class BaseModel:
         pass
 
     @abstractmethod
-    def analysis_validation(self, save_path):
+    def analysis_validation(self, save_root_path, data_preprocessor):
         pass
 
     @abstractmethod

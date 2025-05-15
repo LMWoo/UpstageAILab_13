@@ -59,7 +59,7 @@ if __name__ == "__main__":
 
 
         weight_dir = "./weights"
-        analysis_dir = "./plots"
+        analysis_dir = os.path.join("./analysis", args.model_name)
         if not os.path.exists(weight_dir):
             os.makedirs(weight_dir)
         else:
@@ -69,7 +69,7 @@ if __name__ == "__main__":
         else:
             pass
 
-        model.analysis_validation(os.path.join(analysis_dir, args.model_name + '.png'))
+        model.analysis_validation(analysis_dir, data_preprocessor)
         model.save_model(os.path.join(weight_dir, args.model_name + '.pkl'))
 
         print('saved train model')
