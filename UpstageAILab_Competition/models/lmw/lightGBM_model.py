@@ -25,6 +25,8 @@ from eli5.sklearn import PermutationImportance
 
 from models.base import BaseModel
 
+from utils.util import save_eli5_html_to_image
+
 class LightGBMModel(BaseModel):
     def __init__(self, X_train, X_val, Y_train, Y_val, X_test):
         super().__init__(X_train, X_val, Y_train, Y_val, X_test)
@@ -75,10 +77,9 @@ class LightGBMModel(BaseModel):
                              random_state = 42,
                              n_iter=3).fit(self.X_val.loc[X_val_index], self.Y_val.loc[X_val_index])
         
-        with open(os.path.join(save_root_path, 'PermutationImportance.html'), 'w', encoding='utf-8') as f:
-            html = eli5.format_as_html(eli5.explain_weights(perm, feature_names=self.X_val.loc[X_val_index].columns.tolist()))
-            f.write(html)
-
+        save_eli5_html_to_image(os.path.join(save_root_path, 'PermutationImportance.png'),
+                                perm,
+                                self.X_val.loc[X_val_index].columns.tolist())
 
         # Best, Worst Top 100
         def calculate_se(target, pred):
@@ -119,7 +120,6 @@ class LightGBMModel(BaseModel):
             pass
         plt.savefig(os.path.join(save_comparision_path, 'top_worst_100_boxplot.png'), dpi=300)
 
-        print(data_preprocessor.categorical_columns)
         for column in data_preprocessor.categorical_columns:
             plt.figure(figsize=(30,15))
 

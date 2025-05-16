@@ -88,12 +88,6 @@ class Data_3_Preprocess(BasePreprocess):
 
         self.concat = self.concat.merge(concat_counter, on=['계약년', '계약분기'], how='left')
 
-        if '계약년월' in self.concat.columns:
-            del self.concat['계약년월']
-
-        if '계약분기' in self.concat.columns:
-            del self.concat['계약분기']
-
         print(self.concat.columns)
         print('finish feature engineering')
 
