@@ -23,7 +23,6 @@ EDA (Exploratory Data Analysis), Feature Engineering, Model Selection, Training 
  - 머신러닝의 기초 EDA, 데이터 전처리, 모델 학습 및 평가 프로세스를 알 수 있었고 협업의 중요성을 알게됨
 
 ### 대회 Repository
+ - 개인 작업물을 따로 정리 하였습니다.
  - [UpstageAILab_Competition](./UpstageAILab_Competition)
 
-### 작업 내용
- - 
