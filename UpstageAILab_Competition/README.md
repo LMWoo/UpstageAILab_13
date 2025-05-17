@@ -146,7 +146,7 @@
               return self.preprocessed_data
      ```
      
-   - [Data_1_Preprocess 클래스](/data/lmw/Data_1_dataprocess.py) 
+   - [Data_1_Preprocess 클래스](MachineLearning/UpstageAILab_Competition/data/lmw/Data_1_dataprocess.py) 
 
 ### 2. Experiments
  - 작업 위치
