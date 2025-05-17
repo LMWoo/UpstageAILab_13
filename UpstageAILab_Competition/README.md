@@ -260,18 +260,19 @@
   - 예: `아파트 ↔ 최근접 지하철역 거리`, `아파트 ↔ 버스정류장 거리`
 
 > 이 작업은 향후 거리 기반 변수(예: 통근 편의성, 자연환경 접근성 등)를 모델에 반영하기 위한 핵심 기반 작업입니다.
-
-
-#### 사용법 (모듈: `data/jeb/coords_preprocess.py`)
-
-- 실행 전 `.env` 파일이 필요합니다 (`.env` 파일은 포함되어 있지 않아 `.env.example` 파일을 참고해 `.env` 파일을 프로젝트 루트에 생성)
-- 사용 예시 (Jupyter 또는 전처리 모듈 내):
-
-```python
-from data.jeb.coords_preprocess import add_coordinates_from_address
-
-concat = add_coordinates_from_address(concat)
 ```
+
+### EDA
+
+ - ![0CA36571-BA7E-48FA-BD1C-A66DCBCE3C8C](https://github.com/user-attachments/assets/11ee5c54-0de5-4044-8547-e1967cd7d201)
+ - ![output](https://github.com/user-attachments/assets/f0b9b7d3-9388-42bb-ad3e-d26bb5566424)
+  - 강북쪽 거래량이 많아 보임, 가격이 낮을수록 거래량이 많고 가격이 높을수록 거래량이 적음
+
+- ![eda_target_distribution](https://github.com/user-attachments/assets/7bbfa5d7-cc08-4320-a570-0f21d11fff0b)
+ -  전처리 과정 중, 타겟 변수를 확인하고 필요에 따라 변환을 결정하기위해 생성함. 왼쪽 그래프는 원본데이터의 아파트 값들, 오른쪽 그래프는 로그 변환을 적용한 값들의 분포를 보여줌
+- ![correlation_heatmap](https://github.com/user-attachments/assets/532d5326-16de-46ca-9d52-adfbbab0f48d)
+ - 수치형 피처 간 상관관계 히트맵, 수치형 피처들 간의 선형적인 상관관계를 하눈에 파악하기 위해 생성
+
 ## 4. Modeling
 
 ### Model descrition
