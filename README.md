@@ -5,6 +5,8 @@
 ### 1. 대회 정보
 
  - [대회 페이지](https://stages.ai/en/competitions/355/overview/description)
+ - 대회 기간 : 5월 1일 ~ 5월 15일
+ - 대회 결과 발표 : 5월 ~ 16일
  - 주제: 아파트 실거래가 예측
  - 역할: 팀장, 스케줄링 등
 
