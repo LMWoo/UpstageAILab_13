@@ -155,6 +155,62 @@
    │   │   ├── lightGBM_model.py
    ```
 
+ - 함수 설명
+   - BasePreprocess 상속 필수
+     ```
+     class Data_1_Preprocess(BasePreprocess):
+     ```
+   - feature_selection 함수 : EDA 이후 원본 데이터에서 사용할 변수 고르는 함수
+   - feature_cleaning 함수 : 이상치, 결측치 처리 구현 함수
+   - feature_engineering 함수 : 파생 변수 구현 함수
+   - feature_encoding 함수 : 범주형 변수 인코딩 함수
+   - get_preprocessed_data 필수 구현, main에서 이 함수 호출해서 split data 진행
+     ```
+     def get_preprocessed_data(self):
+        return self.preprocessed_data
+     ```
+     
+ - 실제 개발 예시 : 길어서 일부 생략
+   
+   - BaseModel 클래스
+     ```
+      # Base Class
+      class BaseModel:
+          def __init__(self, X_train, X_val, Y_train, Y_val, X_test):
+              self.X_train = X_train
+              self.X_val = X_val
+              self.Y_train = Y_train
+              self.Y_val = Y_val
+              self.X_test = X_test
+              pass
+      
+          @abstractmethod
+          def train(self):
+              pass
+      
+          @abstractmethod
+          def validation(self):
+              pass
+      
+          @abstractmethod
+          def test(self):
+              pass
+      
+          @abstractmethod
+          def analysis_validation(self, save_root_path, data_preprocessor):
+              pass
+      
+          @abstractmethod
+          def save_model(self, save_path):
+              pass
+      
+          @abstractmethod
+          def load_model(self, load_path):
+              pass
+     ```
+     
+   - [LightGBMModel 클래스](/UpstageAILab_Competition/models/lmw/lightGBM_model.py) 
+
 ### 3. Experiments
  - 작업 위치
    ```
