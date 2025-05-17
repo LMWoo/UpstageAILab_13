@@ -134,11 +134,11 @@
      ```
      class Data_1_Preprocess(BasePreprocess):
      ```
-   - 2. feature_selection 함수 : EDA 이후 원본 데이터에서 사용할 변수 고르는 함수
-   - 3. feature_cleaning 함수 : 이상치, 결측치 처리 구현 함수
-   - 4. feature_engineering 함수 : 파생 변수 구현 함수
-   - 5. feature_encoding 함수 : 범주형 변수 인코딩 함수
-   - 6. get_preprocessed_data 필수 구현, main에서 이 함수 호출해서 split data 진행
+   - feature_selection 함수 : EDA 이후 원본 데이터에서 사용할 변수 고르는 함수
+   - feature_cleaning 함수 : 이상치, 결측치 처리 구현 함수
+   - feature_engineering 함수 : 파생 변수 구현 함수
+   - feature_encoding 함수 : 범주형 변수 인코딩 함수
+   - get_preprocessed_data 필수 구현, main에서 이 함수 호출해서 split data 진행
      ```
      def get_preprocessed_data(self):
         return self.preprocessed_data
