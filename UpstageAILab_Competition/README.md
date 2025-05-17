@@ -259,8 +259,9 @@ concat = add_coordinates_from_address(concat)
 ### Clone the Repository
 
 ```
-git clone git@github.com:AIBootcamp13/upstage-ml-regression-ml_1.git
-cd upstage-ml-regression-ml_1
+git clone git@github.com:LMWoo/MachineLearning.git
+cd MachineLearning
+cd UpstageAILab_Competition
 ```
 
 ### Environment Setting
