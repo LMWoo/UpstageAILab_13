@@ -77,9 +77,6 @@
 
 ### 1. Data Preprocess
 
- - Data folder -> 본인 폴더 -> tutorial_process.py
- - feature_selection : 결측치 처리, 변수 구분 (범주형, 연속형), 대체 및 삭제, 이상치 제거 등 개발
- - feature_engineering : 파생 변수 개발
  - 작업 위치
    ```
    ├── data
@@ -148,7 +145,17 @@
      
    - [Data_1_Preprocess 클래스](/UpstageAILab_Competition/data/lmw/Data_1_dataprocess.py) 
 
-### 2. Experiments
+### 2. Models
+
+ - 작업 위치
+   ```
+   ├── models
+   │   ├── base.py
+   │   │── 작업자 A
+   │   │   ├── lightGBM_model.py
+   ```
+
+### 3. Experiments
  - 작업 위치
    ```
    ├── experiments
@@ -165,7 +172,7 @@
    ```
    python main.py \
     --data=[본인 작업 폴더].[preprocess 파일명].[preprocess 클래스명] \
-    --model=lmw.tutorial.TutorialModel \ # Baseline 기본 모델, RandomForest
+    --model=[본인 작업 폴더].[model 파일명].[model 클래스명] \
     --data_root_path=[data_root path] \
     --model_name=[학습된 모델 이름] \
     --test_result_file=[csv 저장 이름] \
