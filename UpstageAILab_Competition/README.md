@@ -271,14 +271,7 @@
  - Model 사용 이유 : EDA 결과로 데이터 결측치와 이상치가 많이 보여 트리기반 모델로 선정
  - Ensemble : k-fold cross-validation 기반으로 앙상블 적용
 
-## 5. Result
-
-### Leader Board
-
-![3E9B23A0-D81F-4519-BC3C-75975FD33365](https://github.com/user-attachments/assets/acc3820d-ad89-4a09-8174-24fa21b69615)
-
-
-## 6. Getting Start
+## 5. Getting Start
 
 ### Clone the Repository
 
