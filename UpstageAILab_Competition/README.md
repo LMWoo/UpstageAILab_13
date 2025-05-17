@@ -229,15 +229,12 @@
  - 코드 작성법
    - BasePreprocess 상속 필수
      ```
-     class BaselinePreprocess(BasePreprocess):
+     class Data_1_Preprocess(BasePreprocess):
      ```
-   - init : 이 구문 필수로 넣어야함
-     ```
-     self.train_data['is_test'] = 0
-     self.test_data['is_test'] = 1
-        
-     self.concat = pd.concat([self.train_data, self.test_data])
-     ```
+   - feature_selection 함수 : EDA 이후 원본 데이터에서 사용할 변수 고르는 함수
+   - feature_cleaning 함수 : 이상치, 결측치 처리 구현 함수
+   - feature_engineering 함수 : 파생 변수 구현 함수
+   - feature_encoding 함수 : 범주형 변수 인코딩 함수
    - get_preprocessed_data 필수 구현, main에서 이 함수 호출해서 split data 진행
      ```
      def get_preprocessed_data(self):
