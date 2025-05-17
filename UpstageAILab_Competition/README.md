@@ -165,19 +165,6 @@
    │   │   ├── lightGBM_model.py
    ```
 
- - 함수 설명
-   - BaseModel 상속 필수
-     ```
-     class LightGBMModel(BaseModel):
-     ```
-   - train 함수 : 모델 학습 구현 함수
-   - validation 함수 : 모델 평가 구현 함수
-   - test 함수 : 모델 테스트 구현 함수
-   - analysis_validation 함수 : 모델 평가 분석 함수
-     - Feature Importance, Permutation Importance
-     - top worst sample comparision
-   - save_model 함수, load_model 함수
-     
  - 실제 개발 예시 : 길어서 일부 생략
    
    - BaseModel 클래스
