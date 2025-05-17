@@ -156,18 +156,17 @@
    ```
 
  - 함수 설명
-   - BasePreprocess 상속 필수
+   - BaseModel 상속 필수
      ```
-     class Data_1_Preprocess(BasePreprocess):
+     class LightGBMModel(BaseModel):
      ```
-   - feature_selection 함수 : EDA 이후 원본 데이터에서 사용할 변수 고르는 함수
-   - feature_cleaning 함수 : 이상치, 결측치 처리 구현 함수
-   - feature_engineering 함수 : 파생 변수 구현 함수
-   - feature_encoding 함수 : 범주형 변수 인코딩 함수
-   - get_preprocessed_data 필수 구현, main에서 이 함수 호출해서 split data 진행
-     ```
-     def get_preprocessed_data(self):
-        return self.preprocessed_data
+   - train 함수 : 모델 학습 구현 함수
+   - validation 함수 : 모델 평가 구현 함수
+   - test 함수 : 모델 테스트 구현 함수
+   - analysis_validation 함수 : 모델 평가 분석 함수
+     - Feature Importance, Permutation Importance
+     - top worst sample comparision
+   - save_model 함수, load_model 함수
      ```
      
  - 실제 개발 예시 : 길어서 일부 생략
