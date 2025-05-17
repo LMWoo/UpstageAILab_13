@@ -7,11 +7,27 @@
 | 팀장 / 파이프라인 설계 및 통합, EDA 분석 총괄 | 거래 패턴 분석 기반 EDA 및 핵심 변수 도출 | 모델링 / 피처 활용 최적화 및 성능 평가 | 거리 기반 피처 엔지니어링 및 분석 결과 정리 | 데이터 정제 로직 및 시각화 기반 인사이트 제공 |
 
 ## 0. Overview
-### Environment
-- _Write Development environment_
+본 프로젝트는 서울특별시 아파트의 실거래가를 예측하는 머신러닝 모델을 개발하는 데 목적이 있습니다. 
+부동산 가격은 입지, 규모, 건축년도, 교통, 상권 등 다양한 요인에 의해 영향을 받으며, 정확한 예측은 개인·정부·시장 모두에 중요한 역할을 합니다.
 
-### Requirements
-- _Write Requirements_
+- 개인은 합리적인 가격에 주택을 구입하거나 매도할 수 있고,
+- 정부는 이상 거래를 감지하여 시장의 투명성을 확보할 수 있으며,
+- 시장에서는 수요와 공급의 예측을 통해 안정적인 거래가 가능합니다.
+
+대회는 2007년부터 2023년까지의 실거래 데이터를 기반으로, 2023년 이후 테스트 데이터에 대한 **매매 가격(target)** 을 예측하는 **Regression** 문제로 구성되어 있으며, **RMSE(Root Mean Squared Error)** 지표를 통해 모델 성능을 평가합니다.
+
+### Timeline
+  - 5월 1일 - Making A Group
+  - 5월 2~5일 - Start Competition
+  - 5월 6~8일 - Data Collection
+  - 5월 10~12일 - Data EDA
+  - 5월 12~14일 - Modeling & Tuning
+  - 5월 15일 - Report Writing
+
+### Evaluation
+ - **평가지표:** RMSE (Root Mean Squared Error)
+![RMSE](https://lh6.googleusercontent.com/cKB-Cb275gGnl_wFKTnUGB3qLDn-q8fo6phdX_sgPoQSKj2MjE2kOPjC3qE39B2NDkhEWOUQ5LPttHsl4fQiKUyhYXTvFh1A33Ru1dXgIF1NYr-eVvR_AdJlqVwEfCNcXt5W3874k_16TByJDIm3z5E)
+ - RMSE는 예측된 값과 실제 값 간의 평균편차를 측정합니다. 아파트 매매의 맥락에서는 회귀 모델이 실제 거래 가격의 차이를 얼마나 잘 잡아내는지 측정합니다.
 
 ## 1. Components
 
