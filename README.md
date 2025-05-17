@@ -18,7 +18,7 @@ EDA (Exploratory Data Analysis), Feature Engineering, Model Selection, Training 
 ### 대회 결과
  - 11개 팀 중 6등
 
-  ![444057097-acc3820d-ad89-4a09-8174-24fa21b69615](https://github.com/user-attachments/assets/176dae9f-9c85-4862-bc15-44f89ebcc94d)
+  <img src="https://github.com/user-attachments/assets/176dae9f-9c85-4862-bc15-44f89ebcc94d", width="400"/>
 
 
 ### 대회 후기
