@@ -293,7 +293,7 @@ concat = add_coordinates_from_address(concat)
 
 ### Leader Board
 
- - ![3E9B23A0-D81F-4519-BC3C-75975FD33365](https://github.com/user-attachments/assets/acc3820d-ad89-4a09-8174-24fa21b69615)
+![3E9B23A0-D81F-4519-BC3C-75975FD33365](https://github.com/user-attachments/assets/acc3820d-ad89-4a09-8174-24fa21b69615)
 
 
 ## 6. Getting Start
