@@ -91,27 +91,42 @@
  - 코드 구조 : Base
    ```
    # Base Class
-   class BasePreprocess:
-       def __init__(self):
-           self.train_data = None
-           self.test_data = None
-           self.concat = None
-   
-       # main 에서 호출 되는 함수
-       @final
-       def preprocess_data(self): 
-           self.feature_selection()
-           self.feature_engineering()
-
-       # 결측치, 이상치 처리
-       @abstractmethod
-       def feature_selection(self):
-           pass
-
-       # 파생 변수 예시
-       @abstractmethod
-       def feature_engineering(self):
-           pass
+  class BasePreprocess:
+      def __init__(self):
+          self.train_data = None
+          self.test_data = None
+          self.concat = None
+  
+          self.basic_columns = ['target', 'is_test'] 
+          self.label_encoders = {}
+          self.preprocessed_data = {'X_train': None, 'X_test': None}
+  
+      @final
+      def preprocess_data(self):
+          self.feature_selection()
+          self.feature_cleaning()
+          self.feature_engineering()
+          self.feature_encoding()
+      
+      @abstractmethod
+      def feature_selection(self):
+          pass
+  
+      @abstractmethod
+      def feature_cleaning(self):
+          pass
+  
+      @abstractmethod
+      def feature_engineering(self):
+          pass
+  
+      @abstractmethod
+      def feature_encoding(self):
+          pass
+  
+      @abstractmethod
+      def get_preprocessed_data(self):
+          return self.preprocessed_data
    ```
  - 실제 개발 예시 : lmw -> tutorial_dataprocess.py, 길어서 일부 생략
    ```
