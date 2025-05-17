@@ -329,12 +329,3 @@ bash ./experiments/lmw/baseline/train.sh
 ```
 bash ./experiments/lmw/baseline/test.sh
 ```
-
-## 7. etc
-### Meeting Log
-
-- _Insert your meeting log link like Notion or Google Docs_
-
-### Reference
-
-- _Insert related reference_
