@@ -16,7 +16,7 @@
 
 대회는 2007년부터 2023년까지의 실거래 데이터를 기반으로, 2023년 이후 테스트 데이터에 대한 **매매 가격(target)** 을 예측하는 **Regression** 문제로 구성되어 있으며, **RMSE(Root Mean Squared Error)** 지표를 통해 모델 성능을 평가합니다.
 
-## 1. Dataset overview
+### 1. Dataset overview
  - 주요 데이터는 .csv 형태로 제공되며, test.csv의 9,272개 서울시 아파트의 각 시점에서의 실거래가 거래금액(만원)을 예측하는 것이 목표입니다.
  - 학습 데이터는 아래와 같이 1,118,822개이며, 예측해야 할 거래금액(target)을 포함한 52개의 아파트의 정보에 대한 변수와 거래시점에 대한 변수가 주어집니다.
    
@@ -35,7 +35,7 @@
 4. **버스 정류장 정보(bus_feature.csv)**  
    - 지하철과 동일하게 위치 기반 정보 제공
 
-### Timeline
+### 2. Timeline
   - 5월 1일 - Making A Group
   - 5월 2~5일 - Start Competition
   - 5월 6~8일 - Data Collection
@@ -43,7 +43,7 @@
   - 5월 12~14일 - Modeling & Tuning
   - 5월 15일 - Report Writing
 
-### Evaluation
+### 3. Evaluation
  - **평가지표:** RMSE (Root Mean Squared Error)
 ![RMSE](https://lh6.googleusercontent.com/cKB-Cb275gGnl_wFKTnUGB3qLDn-q8fo6phdX_sgPoQSKj2MjE2kOPjC3qE39B2NDkhEWOUQ5LPttHsl4fQiKUyhYXTvFh1A33Ru1dXgIF1NYr-eVvR_AdJlqVwEfCNcXt5W3874k_16TByJDIm3z5E)
  - RMSE는 예측된 값과 실제 값 간의 평균편차를 측정합니다. 아파트 매매의 맥락에서는 회귀 모델이 실제 거래 가격의 차이를 얼마나 잘 잡아내는지 측정합니다.
