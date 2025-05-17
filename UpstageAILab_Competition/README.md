@@ -226,7 +226,7 @@
         def get_preprocessed_data(self):
             return self.preprocessed_data
    ```
- - 주의사항
+ - 코드 작성법
    - BasePreprocess 상속 필수
      ```
      class BaselinePreprocess(BasePreprocess):
@@ -238,9 +238,10 @@
         
      self.concat = pd.concat([self.train_data, self.test_data])
      ```
-   - feature_selection, feature_engineering 함수 마지막 부분에 concat Update 필수
+   - get_preprocessed_data 필수 구현, main에서 이 함수 호출해서 split data 진행
      ```
-     self.concat = concat_select
+     def get_preprocessed_data(self):
+        return self.preprocessed_data
      ```
 ### 2. Experiments
  - 작업 위치
