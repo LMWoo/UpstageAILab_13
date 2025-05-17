@@ -11,11 +11,7 @@
  - 역할: 팀장, 스케줄링 등
 
 ### 2. 대회 목표
-단순히 순위를 올리는 것이 아니라
-
-EDA (Exploratory Data Analysis), Feature Engineering, Model Selection, Training & Validation, Test prediction & Feature Importance을 직접 경험하여
-
-머신러닝 과정을 이해하는 것이 목표
+ - 단순히 순위를 올리는 것이 아니라 **EDA (Exploratory Data Analysis), Feature Engineering, Model Selection, Training & Validation, Test prediction & Feature Importance**을 직접 경험하여 머신러닝 과정을 이해하는 것이 목표
 
 ### 3. 대회 결과
  - 11개 팀 중 6등
