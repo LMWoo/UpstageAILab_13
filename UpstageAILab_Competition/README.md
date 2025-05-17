@@ -134,46 +134,14 @@
            self.concat = pd.concat([self.train_data, self.test_data])
            self.concat = self.concat.rename(columns={'전용면적(㎡)':'전용면적'})
    
-       # 결측치, 이상치 처리 예시
+       # 결측치 
        def feature_selection(self):
            print('start feature selection')
-           # 결측치 탐색 및 보간
-           self.concat['등기신청일자'] = self.concat['등기신청일자'].replace(' ', np.nan)
-           self.concat['거래유형'] = self.concat['거래유형'].replace('-', np.nan)
-           self.concat['중개사소재지'] = self.concat['중개사소재지'].replace('-', np.nan)
-   
-           # 이상치 제거 방법에는 IQR을 이용하겠습니다.
-           def remove_outliers_iqr(dt, column_name):
-               df = dt.query('is_test == 0')       # train data 내에 있는 이상치만 제거하도록 하겠습니다.
-               df_test = dt.query('is_test == 1')
-   
-               Q1 = df[column_name].quantile(0.25)
-               Q3 = df[column_name].quantile(0.75)
-               IQR = Q3 - Q1
-   
-               lower_bound = Q1 - 1.5 * IQR
-               upper_bound = Q3 + 1.5 * IQR
-   
-               df = df[(df[column_name] >= lower_bound) & (df[column_name] <= upper_bound)]
-   
-               result = pd.concat([df, df_test])   # test data와 다시 합쳐주겠습니다.
-               return result
-   
-           self.concat = remove_outliers_iqr(concat_select, '전용면적')
            print('finish feature selection')
    
-       # 파생 변수 예시
+       # 파생 변수 구현
        def feature_engineering(self):
-           is_gangnam = []
-           for x in concat_select['구'].tolist():
-               if x in gangnam :
-                   is_gangnam.append(1)
-               else :
-                   is_gangnam.append(0)
-   
-           # 파생변수를 하나 만듭니다.
-           concat_select['강남여부'] = is_gangnam
-       self.concat = concat_select
+           
    ```
  - 주의사항
    - BasePreprocess 상속 필수
@@ -276,14 +244,6 @@ concat = add_coordinates_from_address(concat)
 
 ### EDA
 
- - ![0CA36571-BA7E-48FA-BD1C-A66DCBCE3C8C](https://github.com/user-attachments/assets/11ee5c54-0de5-4044-8547-e1967cd7d201)
- - ![output](https://github.com/user-attachments/assets/f0b9b7d3-9388-42bb-ad3e-d26bb5566424)
-  - 강북쪽 거래량이 많아 보임, 가격이 낮을수록 거래량이 많고 가격이 높을수록 거래량이 적음
-
-- ![eda_target_distribution](https://github.com/user-attachments/assets/7bbfa5d7-cc08-4320-a570-0f21d11fff0b)
- -  전처리 과정 중, 타겟 변수를 확인하고 필요에 따라 변환을 결정하기위해 생성함. 왼쪽 그래프는 원본데이터의 아파트 값들, 오른쪽 그래프는 로그 변환을 적용한 값들의 분포를 보여줌
-- ![correlation_heatmap](https://github.com/user-attachments/assets/532d5326-16de-46ca-9d52-adfbbab0f48d)
- - 수치형 피처 간 상관관계 히트맵, 수치형 피처들 간의 선형적인 상관관계를 하눈에 파악하기 위해 생성
 
 ## 4. Modeling
 
