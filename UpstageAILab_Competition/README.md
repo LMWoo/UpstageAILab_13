@@ -225,17 +225,53 @@
 ## 3. Data descrption
 
 ### Dataset overview
+ - 주요 데이터는 .csv 형태로 제공되며, test.csv의 9,272개 서울시 아파트의 각 시점에서의 실거래가 거래금액(만원)을 예측하는 것이 목표입니다.
+ - 학습 데이터는 아래와 같이 1,118,822개이며, 예측해야 할 거래금액(target)을 포함한 52개의 아파트의 정보에 대한 변수와 거래시점에 대한 변수가 주어집니다.
+   
+1. **학습 데이터(train.csv)**  
+   - 약 110만 건의 서울시 아파트 실거래 내역 포함 (2007.01 ~ 2023.06)
+   - 거래금액(target) 및 아파트 위치, 면적, 층수, 건축년도, 시군구 등의 52개 feature 포함
 
-- _Explain using data_
+2. **테스트 데이터(test.csv)**  
+   - 약 9,272건, target(거래금액)은 비공개
+   - 모델은 해당 데이터에 대한 예측값을 제출해야 함
 
-### EDA
+3. **지하철 정보(subway_feature.csv)**  
+   - 위도, 경도, 거리, 환승역 여부 등 포함
+   - 아파트와의 거리 기반 피처 엔지니어링 가능
 
-- _Describe your EDA process and step-by-step conclusion_
+4. **버스 정류장 정보(bus_feature.csv)**  
+   - 지하철과 동일하게 위치 기반 정보 제공
 
-### Data Processing
+### 3-1. 주소 기반 좌표 추출 및 거리 피처 생성
 
-- _Describe data processing process (e.g. Data Labeling, Data Cleaning..)_
+모델 성능 향상을 위해 아파트 주소를 Kakao 및 Naver 지도 API를 활용해 위도/경도 좌표로 변환했습니다. 이는 지하철역, 버스정류장 등과의 거리 계산에 활용되며, 입지 특성을 반영하는 핵심 피처로 사용됩니다.
 
+- **주소 정제**: `시군구`, `도로명`, `본번`, `부번`을 결합한 `주소ID` 생성
+- **좌표 변환 로직**:
+  - Kakao API 우선 호출 → 실패 시 Naver API로 fallback
+  - 지번 주소와 도로명 주소를 모두 시도하여 최대한 정확도 확보
+- **API 호출 최소화**:
+  - 변환된 좌표를 `pkl` 캐시 파일로 저장해 중복 요청 방지 및 재현성 확보
+- **좌표 병합**:
+  - 좌표 정보(`좌표X`, `좌표Y`)를 원본 데이터에 `주소ID` 기준으로 병합
+- **활용 목적**:
+  - 추후 지하철/버스/상권 등의 위치 데이터와 연계하여 거리 기반 피처 생성
+  - 예: `아파트 ↔ 최근접 지하철역 거리`, `아파트 ↔ 버스정류장 거리`
+
+> 이 작업은 향후 거리 기반 변수(예: 통근 편의성, 자연환경 접근성 등)를 모델에 반영하기 위한 핵심 기반 작업입니다.
+
+
+#### 사용법 (모듈: `data/jeb/coords_preprocess.py`)
+
+- 실행 전 `.env` 파일이 필요합니다 (`.env` 파일은 포함되어 있지 않아 `.env.example` 파일을 참고해 `.env` 파일을 프로젝트 루트에 생성)
+- 사용 예시 (Jupyter 또는 전처리 모듈 내):
+
+```python
+from data.jeb.coords_preprocess import add_coordinates_from_address
+
+concat = add_coordinates_from_address(concat)
+```
 ## 4. Modeling
 
 ### Model descrition
