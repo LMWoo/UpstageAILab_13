@@ -8,7 +8,7 @@
  - 대회 기간 : 5월 1일 ~ 5월 15일
  - 대회 결과 발표 : 5월 ~ 16일
  - 주제: 아파트 실거래가 예측
- - 역할: 팀장, 스케줄링 등
+ - 역할: **팀장**, 팀 일정 수립 및 관리, Github 운영 등
 
 ### 2. 대회 목표
  - 단순히 순위를 올리는 것이 아니라 **EDA (Exploratory Data Analysis), Feature Engineering, Model Selection, Training & Validation, Test prediction & Feature Importance**을 직접해보며 머신러닝 전체 파이프라인을 이해하는 것이 목표
