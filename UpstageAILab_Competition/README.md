@@ -103,21 +103,6 @@
    │   │── 작업자 A
    │   │   ├── Data_1_process.py
    ```
-
- - 함수 설명
-   - BasePreprocess 상속 필수
-     ```
-     class Data_1_Preprocess(BasePreprocess):
-     ```
-   - feature_selection 함수 : EDA 이후 원본 데이터에서 사용할 변수 고르는 함수
-   - feature_cleaning 함수 : 이상치, 결측치 처리 구현 함수
-   - feature_engineering 함수 : 파생 변수 구현 함수
-   - feature_encoding 함수 : 범주형 변수 인코딩 함수
-   - get_preprocessed_data 필수 구현, main에서 이 함수 호출해서 split data 진행
-     ```
-     def get_preprocessed_data(self):
-        return self.preprocessed_data
-     ```
      
  - 실제 개발 예시 : 길어서 일부 생략
    
@@ -132,6 +117,8 @@
       
               self.basic_columns = ['target', 'is_test'] 
               self.label_encoders = {}
+
+              # None 필수로 채우기, main에서 X_train, X_test를 모델에 넣음
               self.preprocessed_data = {'X_train': None, 'X_test': None}
       
           @final
@@ -140,23 +127,27 @@
               self.feature_cleaning()
               self.feature_engineering()
               self.feature_encoding()
-          
+
+          # EDA 이후 원본 데이터에서 사용할 변수 고르는 함수
           @abstractmethod
           def feature_selection(self):
               pass
-      
+
+          # 결측치, 이상치 처리 함수
           @abstractmethod
           def feature_cleaning(self):
               pass
-      
+
+          # 파생 변수 구현 함수
           @abstractmethod
           def feature_engineering(self):
               pass
-      
+
+          # 범주형 변수 인코딩 함수
           @abstractmethod
           def feature_encoding(self):
               pass
-      
+
           @abstractmethod
           def get_preprocessed_data(self):
               return self.preprocessed_data
