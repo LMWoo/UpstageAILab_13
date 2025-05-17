@@ -16,6 +16,7 @@ EDA (Exploratory Data Analysis), Feature Engineering, Model Selection, Training 
 머신러닝 과정을 이해하는 것이 목표
 
 ### 대회 결과
+![Uploading 444057097-acc3820d-ad89-4a09-8174-24fa21b69615.jpg…]()
 
 ### 대회 후기
 
