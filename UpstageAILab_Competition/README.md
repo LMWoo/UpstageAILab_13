@@ -245,9 +245,6 @@
    # ex) bash ./experiments/lmw/tutorial/train.sh
    ```
 
-### EDA
- - [EDA 결과 정리](https://steel-single-800.notion.site/EDA-1eea5b28c3bb8097a29dd7aed14a26d1)
-
 ## 4. Modeling
 
  - Model : 트리기반 Random Forest, LightGBM 사용
