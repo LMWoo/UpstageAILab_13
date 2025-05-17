@@ -209,7 +209,7 @@
 
 
 ### EDA
- - [EDA 결과 정리] (https://steel-single-800.notion.site/EDA-1eea5b28c3bb8097a29dd7aed14a26d1)
+ - [EDA 결과 정리](https://steel-single-800.notion.site/EDA-1eea5b28c3bb8097a29dd7aed14a26d1)
 
 ## 4. Modeling
 
