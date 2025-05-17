@@ -167,7 +167,6 @@
      - Feature Importance, Permutation Importance
      - top worst sample comparision
    - save_model 함수, load_model 함수
-     ```
      
  - 실제 개발 예시 : 길어서 일부 생략
    
