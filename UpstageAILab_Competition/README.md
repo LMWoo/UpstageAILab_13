@@ -243,7 +243,9 @@ concat = add_coordinates_from_address(concat)
 
 ## 4. Modeling
 
-### Model Code
+ - Model : 트리기반 Random Forest, LightGBM 사용
+ - Model 사용 이유 : EDA 결과로 데이터 결측치와 이상치가 많이 보여 트리기반 모델로 선정
+ - Ensemble : k-fold cross-validation 기반으로 앙상블 적용
 
 ## 5. Result
 
