@@ -213,3 +213,6 @@ pyrightconfig.json
 /UpstageAILab_Competition/analysis
 *.pkl
 *.png
+
+/MLOps/.env
+/MLOps/dataset
