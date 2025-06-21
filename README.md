@@ -30,11 +30,10 @@
 ## 2. MLOps 프로젝트
 
 ### 1. 프로젝트 정보
-
  - 
 
 ### 2. 프로젝트 목표
- - 단순히 순위를 올리는 것이 아니라 **EDA (Exploratory Data Analysis), Feature Engineering, Model Selection, Training & Validation, Test prediction & Feature Importance**을 직접해보며 머신러닝 전체 파이프라인을 이해하는 것이 목표
+ - 
 
 ### 3. 프로젝트 결과
  - 
