@@ -24,5 +24,5 @@
 ### 5. 대회 작업 내용
  - 개인 작업물을 따로 정리 하였습니다.
  - [EDA 작업 정리](https://steel-single-800.notion.site/EDA-1eea5b28c3bb8097a29dd7aed14a26d1)
- - [대회 Repository 정리](./UpstageAILab_Competition)
+ - [대회 Repository 정리](./MLCompetition)
 
