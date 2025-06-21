@@ -26,3 +26,21 @@
  - [EDA 작업 정리](https://steel-single-800.notion.site/EDA-1eea5b28c3bb8097a29dd7aed14a26d1)
  - [대회 Repository 정리](./MLCompetition)
 
+
+## 2. MLOps 프로젝트
+
+### 1. 프로젝트 정보
+
+ - 
+
+### 2. 프로젝트 목표
+ - 단순히 순위를 올리는 것이 아니라 **EDA (Exploratory Data Analysis), Feature Engineering, Model Selection, Training & Validation, Test prediction & Feature Importance**을 직접해보며 머신러닝 전체 파이프라인을 이해하는 것이 목표
+
+### 3. 프로젝트 결과
+ - 
+
+### 4. 프로젝트 후기
+ - 
+
+### 5. 대회 작업 내용
+ - 
