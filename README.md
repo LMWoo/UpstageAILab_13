@@ -81,6 +81,7 @@
  - 대회 결과 발표 : 2025.05.16
  - 주제: 아파트 실거래가 예측
  - 역할: **팀장**, 팀 일정 수립 및 관리, Github 운영 등
+ - [대회 Repository](./MLCompetition)
 
 ### 2. 대회 목표
  - 단순히 순위를 올리는 것이 아니라 **EDA (Exploratory Data Analysis), Feature Engineering, Model Selection, Training & Validation, Test prediction & Feature Importance**을 직접해보며 머신러닝 전체 파이프라인을 이해하는 것이 목표
@@ -96,6 +97,4 @@
 ### 5. 대회 작업 내용
  - 개인 작업물을 따로 정리 하였습니다.
  - [EDA 작업 정리](https://steel-single-800.notion.site/EDA-1eea5b28c3bb8097a29dd7aed14a26d1)
- - [대회 Repository 정리](./MLCompetition)
-
 
