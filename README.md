@@ -1,4 +1,4 @@
-# MachineLearning
+# UpstageAILab_13
 
 ## 1. UpstageAILab ML 경진대회
 
