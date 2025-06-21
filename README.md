@@ -1,6 +1,6 @@
 # UpstageAILab_13
 
-## 1. UpstageAILab ML 경진대회
+## 1. ML 경진대회
 
 ### 1. 대회 정보
 
