@@ -14,6 +14,7 @@
 
 ### 3. 프로젝트 결과
  - Datapipeline, Modeling, Serving 컴포넌트의 자동화 구현까지 경험
+ - [프로젝트 Repository 정리](./MLCompetition)
 
 ### 4. 프로젝트 회고
  - 발표를 거의 마지막날에 해서 제대로 내용을 전달 하지 못함 발표를 처음 부터 준비 해야함
