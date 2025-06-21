@@ -215,4 +215,7 @@ pyrightconfig.json
 *.png
 
 /MLOps/.env
-/MLOps/dataset
+/MLOps/data
+/MLOps/mlruns
+/MLOps/models
+/MLOps/src/wandb
