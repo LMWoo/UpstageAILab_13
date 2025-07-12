@@ -108,26 +108,3 @@
  - 기타 사항
    *  GPU 부족시 utils/utils.py에서 CFG['BATCH_SIZE'] 조절
    
-### 7. 대회 후기
- - **Pretrained 모델 변경(ResNet50 → ConvNeXt)** 자체도 성능에 영향을 주는 것 뿐만 아니라 **Optimizer, Scheduler, Loss 조합**도 모델 성능 향상에 중요한 요소라는 점을 경험
-
- - 대회를 [Upstage MLOps](https://github.com/LMWoo/UpstageAILab_13/tree/master/MLOps) 프로젝트와 병행해서 진행하다 보니, 실험 결과를 체계적으로 기록하고 관리하지 못한 점과 TTA, Ensemble을 깊이 있게 다루지 못한 것이 아쉬움으로 남음
-   - 초반에 wandb등을 사용하였으나 체계적인 기록없이 (val loss만 기록)사용하여 나중에 분석을 제대로 하지 못함, 후반에 confusion matrix 등을 도입하였으나 활용은 못하였고 다음 대회 때 다양한 분석 기법을 도입해 실험을 할 계획
-
- - TTA(Test-Time Augmentation)를 너무 단순하게 좌우 반전만 적용해, 추론 성능 향상이 거의 없었음
-   - 다음 대회에서는 rotation, crop, scaling, blur 등 다양한 TTA 조합을 적용해 좀 더 강건한 예측 성능 확보를 목표로 할 예정
-
- - 실험 종류가 많아지면서 이전 실험에서 사용했던 파라미터들을 체계적으로 관리할 필요성을 절실히 느낌
-   - 이를 해결하기 위해 hydra를 도입하여 복잡한 코드 간소화와 config기반 실험 관리 체계를 도입하여 실험할 예정
-
-
- - **실험 기록이 제일 중요**
-
-### 8. 기타 대회 작업 내용
- - [EDA 작업 내용](./notebooks/EDA.ipynb)
- - [Augmentation 시각화 코드](./notebooks/Augmentation.ipynb)
- - Augmentation 시각화 이미지 예시
-   <img width="707" alt="스크린샷 2025-06-26 오후 9 06 37" src="https://github.com/user-attachments/assets/283db780-e231-4d1d-a46a-4e00026013c9" />
-
-### 9. Confusion Matrix를 이용한 분석 예시 (이 대회 이후 할 예정)
-   * epoch 10에서 confusion matrix : 대각선 이외에 파란색 점들이 흩어져 있음, 오분류 다수 존재
