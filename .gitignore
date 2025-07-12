@@ -224,3 +224,6 @@ pyrightconfig.json
 
 /CVCompetition/.env
 /CVCompetition/data
+/CVCompetition/wandb
+/CVCompetition/binary_version
+/CVCompetition/lightning_logs
