@@ -75,6 +75,10 @@
 <img width="400" height="1800" alt="cm_epoch_030" src="https://github.com/user-attachments/assets/7c870a35-794d-43e2-ab33-4c968c108249" />
 <img width="400" height="502" alt="스크린샷 2025-07-12 오후 8 32 07" src="https://github.com/user-attachments/assets/387d62c6-f326-4bad-873a-2335c3b69749" />
 
+### 8. 결과 분석을 통한 재학습 전략
+ - Hard Negative Mining
+ - 2-Stage Classifier 모델링
+
 ### 8. 설치 및 실험
  - 코드 준비
    ```
