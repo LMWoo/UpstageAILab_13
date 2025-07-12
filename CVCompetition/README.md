@@ -66,20 +66,9 @@
   → **무작위 회전(Rotation)**, **수평/수직 뒤집기(Flip)**, **훼손된 이미지**가 포함되어 있습니다.
 - 따라서 모델은 **일반화와 강건성**을 고려한 학습 전략이 요구됩니다.
 
-### 5. 모델 실험 결과
- * data augumentation : Center Crop + Vertical Flip + Rotation + ColorJitter + Contrast + GaussianBlur + Erasing + RandAugment (모든 실험 동일)
+### 5. 결과 분석
 
- | 실험 | Pretrained model | Loss | LR Scheduler | Optimizer | 기타 기법 | Score (Log Loss) |
- |-----------|--------------------|-------------|-------------------|------------|------------------------|------------------|
- | 1 | ResNet50 (torchvision)   | CrossEntropy | -                 | AdamW     | -                             | **0.319**        |
- | 2 | ResNet50 (timm)          | CrossEntropy | -                 | AdamW     | -                             | **0.317**        |
- | 3 | ConvNeXt (timm)          | CrossEntropy | -                 | AdamW     | -                             | **0.251**        |
- | 4 | ConvNeXt (timm)          | Focal Loss   | CosineAnnealing   | AdamW     | -                             | **0.195**        |
- | 5 | ConvNeXt (timm)          | Focal Loss   | CosineAnnealing   | AdamW     | EMA                           | **0.185 (최종 제출)** |
- | 6 | ConvNeXt (timm)          | Focal Loss   | CosineAnnealing   | AdamW     | EMA, Mixup                    | **0.183 (대회 종료 후 추가 실험)** |
- | 7 | ConvNeXt (timm)          | Focal Loss   | CosineAnnealing   | AdamW     | EMA, Mixup, kfold Ensemble    | **0.172 (대회 종료 후 추가 실험)*** |
-
-### 6. 설치 및 실험
+### 4. 설치 및 실험
  - 코드 준비
    ```
    git clone https://github.com/LMWoo/HectoAIChallenge.git
