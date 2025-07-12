@@ -76,26 +76,21 @@
    cd CVCompetition
    ```
 
+ - env 설정
+   * env.template를 **삭제가 아닌 복사** -> env 변경
+   * WANDB_API_KEY=본인 wandb api 키 입력
+
  - 데이터 전처리
    ```
    python tools/preprocess_augraphy.py
    ```
    
- - env 설정
-   * env.template를 **삭제가 아닌 복사** -> env 변경
-   * WANDB_API_KEY=본인 wandb api 키 입력
-
- - docker 및 container 설치
+ - 학습
    ```
-   docker compose up
-   ```
-
- - 실행
-   ```
-   docker exec -it hecto-exp-container bash
-   bash ./src/experiment_EMA_KFOLD_ENSEMBLE_FOCAL_LOSS_early_stopping_freeze_adamw_timm_convnext.sh
+   python tools/coarse_train.py
    ```
    
- - 기타 사항
-   *  GPU 부족시 utils/utils.py에서 CFG['BATCH_SIZE'] 조절
-   
+ - 테스트
+   ```
+   python tools/test.py
+   ```
