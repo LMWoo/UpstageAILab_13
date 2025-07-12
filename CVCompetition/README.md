@@ -68,7 +68,7 @@
 
 ### 5. 결과 분석
 
-### 4. 설치 및 실험
+### 6. 설치 및 실험
  - 코드 준비
    ```
    git clone https://github.com/LMWoo/UpstageAILab_13.git
@@ -77,9 +77,10 @@
    ```
 
  - 데이터 전처리
-   * [해당 사이트](https://dacon.io/competitions/official/236493/data)에서 데이터 받은 후 압축 해제
-   * 받은 데이터 폴더 이름을 data로 변경 후 -> HectoAIChallenge/data로 이동
-
+   ```
+   python tools/preprocess_augraphy.py
+   ```
+   
  - env 설정
    * env.template를 **삭제가 아닌 복사** -> env 변경
    * WANDB_API_KEY=본인 wandb api 키 입력
