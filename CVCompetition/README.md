@@ -79,7 +79,10 @@
 
 
 ### 5. Data Augmentation
-- 
+- 주요 증강 기법 : 데이터 정량, 정성 분석을 통해 Train/Test셋 간의 분포 차이를 보완하기 위한 다양한 증강 기법을 도입하였습니다.
+   - 기하학적 변형 : Scaling, Translate, Rotate, Flip 등을 사용하여 다양한 기하학적 변형으로 데이터 증강을 하였습니다.
+   - 색상 변형 : ColorJitter를 사용하여 이미지의 밝기, 색상을 증강하였습니다.
+   - 노이즈 변형 : Gaussian Blur를 사용하여 Test 데이터의 흐림 및 노이즈 특성을 모방하였습니다.
 
 ### 6. Modeling
 - 
