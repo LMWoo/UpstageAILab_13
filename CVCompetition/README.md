@@ -65,17 +65,27 @@
 - 정량 분석 (Quantitative Analysis)
   - 가로/세로 종횡비 (Aspect): 이미지의 너비/높이 비율 분포 분석
 
-| Aspect_Train | Aspect_Test |
+| Brightness_Train | Brightness_Test |
 |:------------:|:-----------:|
 |||
 
 
-| Rotation_Train | Rotation_Test |
+| Contrast_Train | Contrast_Test |
 |:--------------:|:-------------:|
 | ||
 
+| Blurriness_Train | Blurriness_Test |
+|:--------------:|:-------------:|
+| ||
+
+| Noise_Train | Noise_Test |
+|:--------------:|:-------------:|
+| ||
+
+
 - 정성 분석 (Qualitative Analysis)
-  - Train 데이터는 Rotation이 거의 90, 180도인 반면 Test 데이터는 0~180까지 아주 다양 -> Augmentation에 Rotation 전략 필요하였습니다.
+  - Train 데이터는 Rotation이 거의 90, 180도인 반면 Test 데이터는 0~180까지 아주 다양하였습니다. -> Augmentation에 Rotation 전략을 사용하였습니다.
+  - Test 데이터에 회전 뿐만 아니라 Vertical, Horizon으로 Flip 된 이미지가 보였습니다. -> Augmentation에 Flip 전략을 사용하였습니다.
   - <img width="942" height="718" alt="스크린샷 2025-07-12 오후 9 58 58" src="https://github.com/user-attachments/assets/90af84b5-1725-488a-8f9a-279c7e995370" />
 
 
