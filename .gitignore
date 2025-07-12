@@ -227,3 +227,5 @@ pyrightconfig.json
 /CVCompetition/wandb
 /CVCompetition/binary_version
 /CVCompetition/lightning_logs
+/CVCompetition/outputs
+*.csv

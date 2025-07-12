@@ -4,4 +4,6 @@ model:
   num_classes: 17
   pretrained: true
   arcFace: false
-  freeze_epochs: 20
+  is_binary: false
+  mid_freeze_epochs: 20
+  all_freeze_epochs: 25

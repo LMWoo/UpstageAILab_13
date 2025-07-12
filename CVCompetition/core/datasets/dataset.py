@@ -7,11 +7,6 @@ import albumentations as A
 import pandas as pd
 import numpy as np
 from albumentations.pytorch import ToTensorV2
-from albumentations import (
-    Compose, RandomResizedCrop, HorizontalFlip, VerticalFlip, Rotate,
-    ColorJitter, RandomBrightnessContrast, CLAHE,
-    GaussianBlur, CoarseDropout, Resize, Normalize
-)
 from PIL import Image
 from omegaconf import DictConfig
 from pytorch_lightning import LightningDataModule, LightningModule, Trainer, seed_everything
@@ -22,6 +17,15 @@ from hydra.utils import instantiate
 from sklearn.model_selection import train_test_split
 
 from core.datasets.datasets import ImageDataset, AugraphyImageDataset
+
+def apply_morphology(image, mode="dilate", k_range=(1, 3)):
+    k = np.random.randint(k_range[0], k_range[1] + 1)
+    kernel = np.ones((k, k), np.uint8)
+    if mode == "dilate":
+        return cv2.dilate(image, kernel, iterations=1)
+    elif mode == "erode":
+        return cv2.erode(image, kernel, iterations=1)
+    return image
 
 class DatasetModule(LightningDataModule):
     def __init__(self, cfg):
@@ -38,7 +42,7 @@ class DatasetModule(LightningDataModule):
             A.SmallestMaxSize(max_size=self.img_size),
 
             # 2) 다양한 공간/기하 변형
-            A.RandomResizedCrop(size=(self.img_size, self.img_size),
+            A.RandomResizedCrop(width=self.img_size, height=self.img_size,
                                 scale=(0.8, 1.0), ratio=(0.75, 1.33), p=0.5),
             A.ShiftScaleRotate(shift_limit=0.05, scale_limit=0.15,
                             rotate_limit=30, border_mode=cv2.BORDER_CONSTANT,
@@ -51,8 +55,8 @@ class DatasetModule(LightningDataModule):
 
             # 3) 모폴로지 증강
             A.OneOf([
-                A.Morphological(scale=(1, 3), operation="dilation", p=1.0),
-                A.Morphological(scale=(2, 4), operation="erosion", p=1.0),
+                A.Lambda(image=lambda x, **kwargs: apply_morphology(x, mode="dilate", k_range=(1, 3))),
+                A.Lambda(image=lambda x, **kwargs: apply_morphology(x, mode="erode",  k_range=(2, 4))),
             ], p=0.3),
 
             # 4) Blur / Noise
@@ -84,7 +88,7 @@ class DatasetModule(LightningDataModule):
             A.SmallestMaxSize(max_size=self.img_size),
 
             # 2) 다양한 공간/기하 변형
-            A.RandomResizedCrop(size=(self.img_size, self.img_size),
+            A.RandomResizedCrop(width=self.img_size, height=self.img_size,
                                 scale=(0.8, 1.0), ratio=(0.75, 1.33), p=0.5),
 
             A.RandomRotate90(p=0.5),
