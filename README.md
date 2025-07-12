@@ -12,6 +12,14 @@
  - 다양한 딥러닝 기반 Backbone 모델을 직접 적용하고 성능을 비교해본다.
  - 실전 환경에 가까운 문서 분류 문제를 다룸으로써, 현업에 적용 가능한 모델 개발 능력을 강화한다.
 
+### 3. Timeline
+ - 5월 1일 - Making A Group
+ - 5월 2~5일 - Start Competition
+ - 5월 6~8일 - Data Collection
+ - 5월 10~12일 - Data EDA
+ - 5월 12~14일 - Modeling & Tuning
+ - 5월 15일 - Report Writing
+
 ### 3. 대회 결과
  - 10개 팀 중 5등
 <img width="400" alt="스크린샷 2025-07-12 오후 1 21 17" src="https://github.com/user-attachments/assets/70358cba-44e6-4c38-af9c-038aa05360db" />
