@@ -89,8 +89,18 @@
    - 문서 이미지의 특화된 증강 라이브러리인 Augraphy를 사용하였습니다.
    - Aguraphy는 처리속도 이슈로 Offline 증강을 사용하였습니다.
 
-### 6. Modeling
-- 
+### 6. Modeling & Train
+- ConvNext
+- AdamW
+- Cosine Aannealing
+- EMA
+
+### 7. 성능 고도화
+ - Ensemble (weighted, seed, k fold etc)
+ - TTA 기법
+ - mixup, cutmix
+ - augraphy 오프라인 증강
+ - Online Hard Negative Mining
 
 ### 7. 결과 분석
  - confusion matrix, validation error를 통해 모델의 3과 7 클래스, 4와 14 클래스간의 혼동을 파악하였습니다.
@@ -98,7 +108,6 @@
 <img width="400" height="502" alt="스크린샷 2025-07-12 오후 8 32 07" src="https://github.com/user-attachments/assets/387d62c6-f326-4bad-873a-2335c3b69749" />
 
 ### 8. 결과 분석을 통한 재학습 전략
- - Hard Negative Mining
  - 2-Stage Classifier 모델링
 
 ### 8. 설치 및 실험
