@@ -13,12 +13,12 @@
  - 실전 환경에 가까운 문서 분류 문제를 다룸으로써, 현업에 적용 가능한 모델 개발 능력을 강화한다.
 
 ### 3. Timeline
- - 5월 1일 - Making A Group
- - 5월 2~5일 - Start Competition
- - 5월 6~8일 - Data Collection
- - 5월 10~12일 - Data EDA
- - 5월 12~14일 - Modeling & Tuning
- - 5월 15일 - Report Writing
+ - 6월 30일 – 대회 시작 (Start Competition)
+ - 7월 1일 – 데이터 분석 및 EDA
+ - 7월 2일 ~ 4일 – 모델링 및 실험 진행
+ - 7월 7일 – 결과 분석 (Confusion Matrix, t-SNE 등)
+ - 7월 8일 ~ 10일 – 모델 재설계 및 추가 실험
+ - 7월 11일 – 최종 리포트 작성
 
 ### 3. 대회 결과
  - 10개 팀 중 5등
