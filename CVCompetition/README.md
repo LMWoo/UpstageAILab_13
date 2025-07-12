@@ -68,14 +68,6 @@
   → **무작위 회전(Rotation)**, **수평/수직 뒤집기(Flip)**, **훼손된 이미지**가 포함되어 있습니다.
 - 따라서 모델은 **일반화와 강건성**을 고려한 학습 전략이 요구됩니다.
 
-### 3. 대회 참여 목표
- - 다양한 딥러닝 기반 Backbone 모델을 직접 적용하고 성능을 비교해본다.
- - 실전 환경에 가까운 문서 분류 문제를 다룸으로써, **현업에 적용 가능한 모델 개발 능력을 강화한다.**
-
-### 4. 대회 결과
- - Private : 1396 팀중 **168등**
-   <img width="1207" alt="스크린샷 2025-06-21 오후 7 16 06" src="https://github.com/user-attachments/assets/3c340a77-62e7-4af2-8783-ba8c057bc5b2" />
-
 ### 5. 모델 실험 결과
  * data augumentation : Center Crop + Vertical Flip + Rotation + ColorJitter + Contrast + GaussianBlur + Erasing + RandAugment (모든 실험 동일)
 
