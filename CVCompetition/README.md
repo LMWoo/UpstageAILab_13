@@ -61,17 +61,21 @@
 
 ---
 
-#### ⚠️ 평가 데이터 주의사항
-- 테스트 이미지는 학습 이미지와 달리  
-  → **무작위 회전(Rotation)**, **수평/수직 뒤집기(Flip)**, **훼손된 이미지**가 포함되어 있습니다.
-- 따라서 모델은 **일반화와 강건성**을 고려한 학습 전략이 요구됩니다.
+### 4. EDA
+- 
 
-### 5. 결과 분석
+### 5. Data Augmentation
+- 
+
+### 6. Modeling
+- 
+
+### 7. 결과 분석
  - confusion matrix, validation error를 통해 모델의 3, 7 클래스 혼동을 파악하였습니다.
 <img width="400" height="1800" alt="cm_epoch_030" src="https://github.com/user-attachments/assets/7c870a35-794d-43e2-ab33-4c968c108249" />
 <img width="400" height="502" alt="스크린샷 2025-07-12 오후 8 32 07" src="https://github.com/user-attachments/assets/387d62c6-f326-4bad-873a-2335c3b69749" />
 
-### 6. 설치 및 실험
+### 8. 설치 및 실험
  - 코드 준비
    ```
    git clone https://github.com/LMWoo/UpstageAILab_13.git
