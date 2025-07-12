@@ -32,7 +32,7 @@
  - 중간에 **서버 장애 이슈**를 겪으며, 실험 결과와 모델 가중치 등 아티팩트를 체계적으로 관리하는 것이 얼마나 중요한지를 실감할 수 있었습니다.
 
 ### 5. 대회 작업 내용
- - [Augraphy 관련 실험](https://steel-single-800.notion.site/Augraphy-Validation-22ea5b28c3bb81a58e0cd0bb70e7b13f)
+ - [Augraphy Validation 관련 실험](https://steel-single-800.notion.site/Augraphy-Validation-22ea5b28c3bb81a58e0cd0bb70e7b13f)
 
 
 ## MLOps 프로젝트
