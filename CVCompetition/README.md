@@ -136,3 +136,8 @@
    ```
    python tools/test.py
    ```
+
+ - 다중 학습
+   ```
+   python tools/coarse_train.py -m model=convnext,resnet50
+   ```
