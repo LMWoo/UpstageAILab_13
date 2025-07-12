@@ -208,6 +208,8 @@ pyrightconfig.json
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/linux,visualstudiocode,python
+.DS_Store
+
 /UpstageAILab_Competition/weights
 /UpstageAILab_Competition/results
 /UpstageAILab_Competition/analysis
@@ -219,3 +221,6 @@ pyrightconfig.json
 /MLOps/mlruns
 /MLOps/models
 /MLOps/src/wandb
+
+/CVCompetition/.env
+/CVCompetition/data

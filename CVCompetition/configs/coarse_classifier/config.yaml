@@ -1,0 +1,10 @@
+defaults:
+  - data: convnext
+  - model: convnext
+  - optimizer: adamw
+  - trainer: trainer
+  - loss: softtarget_focalloss
+  - scheduler: cosineAnnealing_lr
+  - callback: early_stopping
+
+experiment_name: experiment_0

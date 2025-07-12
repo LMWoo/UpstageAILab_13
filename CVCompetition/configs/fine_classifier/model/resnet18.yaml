@@ -1,0 +1,9 @@
+model:
+  _target_: timm.create_model
+  model_name: resnet18
+  num_classes: 17
+  pretrained: true
+  arcFace: false
+  is_binary: true
+  mid_freeze_epochs: 0
+  all_freeze_epochs: 0

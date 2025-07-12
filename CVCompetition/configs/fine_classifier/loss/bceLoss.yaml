@@ -1,0 +1,5 @@
+loss_name: bceLoss
+loss:
+  gamma: 2.0
+  reduction: mean
+  alpha: null

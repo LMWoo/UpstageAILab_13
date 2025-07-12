@@ -1,0 +1,19 @@
+max_epochs: 100
+use_ema: true
+ema_update_epochs: 0
+use_mixup: true
+hnm:
+  use_hnm: true
+  stop_epoch: 100
+use_augraphy: true
+error:
+  analysis:
+    save_dir: error_logs/analysis
+    top_k: 100
+  tsne:
+    save_dir: error_logs/tsne
+    every_n_epoch: 1
+  perclassloss:
+    save_dir: error_logs/perclassloss
+  confusion_matrix:
+    save_dir: error_logs/confusion_matrix

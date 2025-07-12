@@ -1,0 +1,10 @@
+defaults:
+  - data: resnet18
+  - model: resnet18
+  - optimizer: adam
+  - trainer: trainer
+  - loss: bceLoss
+  - scheduler: cosineAnnealing_lr
+  - callback: early_stopping
+
+experiment_name: experiment_0
