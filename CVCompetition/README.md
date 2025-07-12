@@ -72,16 +72,19 @@
 
 | Contrast_Train | Contrast_Test |
 |:--------------:|:-------------:|
-| ||
+|<img width="400" height="296" alt="train_contrast" src="https://github.com/user-attachments/assets/eb2337c3-1ad4-48bb-b9b7-f4838dc13163" />|<img width="400" height="300" alt="test_contrast" src="https://github.com/user-attachments/assets/7e81132e-ee4a-43cd-8629-c44571aae3e5" />
+|
 
 | Blurriness_Train | Blurriness_Test |
 |:--------------:|:-------------:|
-| ||
+|<img width="400" height="292" alt="train_blur" src="https://github.com/user-attachments/assets/c9584795-9d10-4f9a-9ecf-7cd585b391e0" /> |<img width="400" height="292" alt="test_blur" src="https://github.com/user-attachments/assets/94400ed7-bb8f-4f9a-945e-c40b4c2d6a2a" />
+|
+
 
 | Noise_Train | Noise_Test |
 |:--------------:|:-------------:|
-| ||
-
+|<img width="400" height="299" alt="train_noise" src="https://github.com/user-attachments/assets/9cd20d7d-b558-4b68-8d63-b2ce38277691" /> |<img width="400" height="298" alt="test_noise" src="https://github.com/user-attachments/assets/2347866a-d753-4ad5-af3a-129fca606930" />
+|
 
 - 정성 분석 (Qualitative Analysis)
   - Train 데이터는 Rotation이 거의 90, 180도인 반면 Test 데이터는 0~180까지 아주 다양하였습니다. -> Augmentation에 Rotation 전략을 사용하였습니다.
