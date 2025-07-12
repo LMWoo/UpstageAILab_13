@@ -12,8 +12,8 @@
  - 
 
 ### 3. 대회 결과
- - 
-<img width="982" height="722" alt="스크린샷 2025-07-12 오후 1 21 17" src="https://github.com/user-attachments/assets/70358cba-44e6-4c38-af9c-038aa05360db" />
+ - 10개 팀 중 5등
+<img width="400" alt="스크린샷 2025-07-12 오후 1 21 17" src="https://github.com/user-attachments/assets/70358cba-44e6-4c38-af9c-038aa05360db" />
 
 ### 4. 대회 회고
  - 
