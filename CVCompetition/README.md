@@ -64,8 +64,9 @@
 ### 4. EDA
 - 정량 분석
 - 정성 분석 (Qualitative Analysis)
-  - Train 데이터는 Rotation이 거의 90, 180도인 반면 Test 데이터는 0~180까지 아주 다양하게 있음 -> Augmentation에 Rotation 전략 필요
-![sample_images_of_test](https://github.com/user-attachments/assets/f96b8422-b7bf-482d-b119-46e5b35383a2)
+  - Train 데이터는 Rotation이 거의 90, 180도인 반면 Test 데이터는 0~180까지 아주 다양 -> Augmentation에 Rotation 전략 필요하였습니다.
+  - <img width="942" height="718" alt="스크린샷 2025-07-12 오후 9 58 58" src="https://github.com/user-attachments/assets/90af84b5-1725-488a-8f9a-279c7e995370" />
+
 
 ### 5. Data Augmentation
 - 
