@@ -67,9 +67,7 @@
 
 | Brightness_Train | Brightness_Test |
 |:------------:|:-----------:|
-|<img width="400" height="292" alt="train_bright" src="https://github.com/user-attachments/assets/ecab8923-bc55-4856-8cca-4001d8d0ee75" />
-|<img width="400" height="291" alt="test_bright" src="https://github.com/user-attachments/assets/6a47de26-e231-4b3f-a322-43b49043648f" />
-|
+|<img width="400" height="292" alt="train_bright" src="https://github.com/user-attachments/assets/ecab8923-bc55-4856-8cca-4001d8d0ee75" />|<img width="400" height="291" alt="test_bright" src="https://github.com/user-attachments/assets/6a47de26-e231-4b3f-a322-43b49043648f" />|
 
 
 | Contrast_Train | Contrast_Test |
