@@ -71,8 +71,9 @@
 ### 4. 설치 및 실험
  - 코드 준비
    ```
-   git clone https://github.com/LMWoo/HectoAIChallenge.git
-   cd HectoAIChallenge
+   git clone https://github.com/LMWoo/HectoAIChallenge.git](https://github.com/LMWoo/UpstageAILab_13.git
+   cd UpstageAILab_13
+   cd CVCompetition
    ```
 
  - 데이터 준비
