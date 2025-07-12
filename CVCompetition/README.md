@@ -63,6 +63,10 @@
 
 ### 4. EDA
 - 정량 분석 (Quantitative Analysis)
+   - GrayScale의 평균값을 기반으로 Brightness를 측정하였습니다.
+   - Wavelet Transform 기반으로 노이즈를 측정하였습니다.
+   - GrayScale의 표준편차 기반으로 Contrast를 측정하였습니다.
+   - GrayScale의 Laplacian를 적용 후 Blur를 측정하였습니다.
 
 | Brightness_Train | Brightness_Test |
 |:------------:|:-----------:|
