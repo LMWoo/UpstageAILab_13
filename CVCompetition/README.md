@@ -63,7 +63,6 @@
 
 ### 4. EDA
 - 정량 분석 (Quantitative Analysis)
-  - 가로/세로 종횡비 (Aspect): 이미지의 너비/높이 비율 분포 분석
 
 | Brightness_Train | Brightness_Test |
 |:------------:|:-----------:|
