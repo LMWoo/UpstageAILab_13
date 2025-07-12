@@ -100,8 +100,7 @@
    - 문서 이미지의 특화된 증강 라이브러리인 Augraphy를 사용하였습니다.
    - Aguraphy는 처리속도 이슈로 Offline 증강을 사용하였습니다.
 
-  - <img width="942" height="718" alt="스크린샷 2025-07-12 오후 9 58 58" src="https://github.com/user-attachments/assets/90af84b5-1725-488a-8f9a-279c7e995370" />
-
+<img width="942" height="718" alt="스크린샷 2025-07-12 오후 9 58 58" src="https://github.com/user-attachments/assets/90af84b5-1725-488a-8f9a-279c7e995370" />
 
 ### 6. Modeling & Train
 - ConvNext
